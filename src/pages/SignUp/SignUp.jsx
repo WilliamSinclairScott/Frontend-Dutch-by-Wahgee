@@ -67,6 +67,10 @@ const SignUp = () => {
 
         </TextField.Root>
 
+        <TextField.Root m='2' size='3'type='name' placeholder="Name">
+
+        </TextField.Root>
+
         <Button m='2' size='3'>Create Account</Button>
 
       </Flex>
