@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import { Header } from './components/Header/Header'
-// import { Flex } from '@radix-ui/themes'
+import { useLocation } from 'react-router-dom'
+import NavHeader from './components/NavHeader/NavHeader'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 import DivvyList from './pages/DivvyList/DivvyList'
@@ -8,10 +8,13 @@ import Divvy from './pages/Divvy/Divvy'
 import Transaction from './pages/Transaction/Transaction'
 
 function App() {
-
+  const { pathname } = useLocation()
+  function hideNav () {
+    return pathname === '/' || pathname === '/sign-up'
+  }
   return (
     <>
-      <Header />
+      {hideNav() ? null : <NavHeader />}
       <Routes>
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
