@@ -2,7 +2,7 @@ import { Box, Flex, Heading, IconButton, DropdownMenu } from '@radix-ui/themes'
 import { Share1Icon, Share2Icon, DotsVerticalIcon } from '@radix-ui/react-icons'
 import { NavLink } from 'react-router-dom'
 
-//TODO: Add logic to replace left icon with Done button for edit specific pages
+//TODO: Add logic to replace left icon with Done button for edit pages
 //TODO: Add logic to show menu delete options only on specific pages
 //TODO: Add Heading resizing CSS, etc to handle long titles (ideally we wrap and change font size insead of truncating)
 
