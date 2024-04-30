@@ -1,6 +1,6 @@
 
 import { IconButton, Box } from '@radix-ui/themes';
-import { PlusCircledIcon, PlusIcon } from '@radix-ui/react-icons'
+import { PlusIcon } from '@radix-ui/react-icons'
 
 export function AddButton() {
   return (
