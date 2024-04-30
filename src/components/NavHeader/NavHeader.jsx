@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, IconButton, DropdownMenu } from '@radix-ui/themes'
 import { Share1Icon, Share2Icon, DotsVerticalIcon } from '@radix-ui/react-icons'
+import { NavLink } from 'react-router-dom'
 
 
 export default function NavHeader() {
@@ -8,9 +9,11 @@ export default function NavHeader() {
     <nav>
       <Flex as="header" align='center' justify='between' gap="3" p='1' >
         <Box width='96px'>
-          <IconButton size='3' variant="ghost" aria-label="Home">
-            <Share1Icon width="32" height="32" />
-          </IconButton>
+          <NavLink to="/divvys">
+            <IconButton size='3' variant="ghost" aria-label="Home">
+              <Share1Icon width="32" height="32" />
+            </IconButton>
+          </NavLink>
         </Box>
         <Heading size='7'>Divvys</Heading>
         <Box width='96px' align='end'>
@@ -24,8 +27,8 @@ export default function NavHeader() {
               </IconButton>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              <DropdownMenu.Item>Delete Divvy</DropdownMenu.Item>
-              {/* <DropdownMenu.Separator /> */}
+                <DropdownMenu.Item>Delete this Divvy</DropdownMenu.Item>
+                <DropdownMenu.Item>Delete this Transaction</DropdownMenu.Item>
               <DropdownMenu.Item>Log Out</DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>
