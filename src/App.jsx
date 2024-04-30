@@ -13,7 +13,7 @@ function App() {
     return pathname === '/' || pathname === '/sign-up'
   }
   return (
-    <>
+    <main>
       {hideNav() ? null : <NavHeader />}
       <Routes>
         <Route path="/" element={<SignIn />} />
@@ -24,7 +24,7 @@ function App() {
         <Route path="/divvys/:divvy-id/:transaction-id" element={<Transaction />} />
         <Route path="/divvys/:divvy-id/new-transaction" element={<Transaction />} />
       </Routes>
-    </>
+    </main>
   )
 }
 
