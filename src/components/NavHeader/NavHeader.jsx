@@ -30,8 +30,9 @@ export default function NavHeader({ title = 'Dutch' }) {
               </IconButton>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-                <DropdownMenu.Item>Delete this Divvy</DropdownMenu.Item>
-                <DropdownMenu.Item>Delete this Transaction</DropdownMenu.Item>
+              <DropdownMenu.Item>Edit this Divvy</DropdownMenu.Item>
+              <DropdownMenu.Item>Delete this Divvy</DropdownMenu.Item>
+              <DropdownMenu.Item>Delete this Transaction</DropdownMenu.Item>
               <DropdownMenu.Item>Log Out</DropdownMenu.Item>
             </DropdownMenu.Content>
           </DropdownMenu.Root>

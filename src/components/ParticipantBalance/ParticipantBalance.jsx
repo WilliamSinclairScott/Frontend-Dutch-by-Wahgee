@@ -7,17 +7,17 @@ import { ChevronRightIcon } from '@radix-ui/react-icons'
 export default function ParticipantBalance({ participantName = 'Balance w/ default props', owesWho = 'Participant', balance = '$1 ' }) {
   return (
     <>
-      <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
-        <Box p='2'>
-          <Text size='7'>Aris</Text>
+      <Grid columns='3' rows='1' align='center' p='1' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
+        <Box pr='1'>
+          <Text size='6'>Aris</Text>
           <Text size='4' color='gray'> owes Ian</Text>
 
         </Box>
         <Box align='end'>
-          <Text size='7' color='red'>$12</Text>
+          <Text size='6' color='red'>$12</Text>
         </Box>
         <Box align='end'>
-          <IconButton variant='ghost'>
+          <IconButton size='1' variant='ghost'>
           <ChevronRightIcon height='36px' width='36px'/>
           </IconButton>
         </Box>
@@ -26,12 +26,12 @@ export default function ParticipantBalance({ participantName = 'Balance w/ defau
 
       <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
       <Box p='2'>
-          <Text size='7'>Josh</Text>
+          <Text size='6'>Josh</Text>
           <Text size='4' color='gray'></Text>
 
         </Box>
         <Box align='end'>
-          <Text size='7' color='gray'>$0</Text>
+          <Text size='6' color='gray'>$0</Text>
         </Box>
         <Box align='end'>
           <IconButton variant='ghost'>
@@ -43,12 +43,12 @@ export default function ParticipantBalance({ participantName = 'Balance w/ defau
 
       <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
       <Box p='2'>
-          <Text size='7'>Ian</Text>
+          <Text size='6'>Ian</Text>
           <Text size='4' color='gray'></Text>
 
         </Box>
         <Box align='end'>
-          <Text size='7' color='green'>+$20</Text>
+          <Text size='6' color='green'>+$20</Text>
         </Box>
         <Box align='end'>
           <IconButton variant='ghost'>
@@ -60,12 +60,12 @@ export default function ParticipantBalance({ participantName = 'Balance w/ defau
 
       <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
       <Box p='2'>
-          <Text size='7'>Will</Text>
+          <Text size='6'>Will</Text>
           <Text size='4' color='gray'> owes Ian</Text>
 
         </Box>
         <Box align='end'>
-          <Text size='7' color='red'>$8</Text>
+          <Text size='6' color='red'>$8</Text>
         </Box>
         <Box align='end'>
           <IconButton variant='ghost'>
@@ -77,12 +77,12 @@ export default function ParticipantBalance({ participantName = 'Balance w/ defau
 
       <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
       <Box p='2'>
-          <Text size='7'>{participantName}</Text>
+          <Text size='6'>{participantName}</Text>
           <Text size='4' color='gray'> owes {owesWho}</Text>
 
         </Box>
         <Box align='end'>
-          <Text size='7' color='red'>{balance}</Text>
+          <Text size='6' color='red'>{balance}</Text>
         </Box>
         <Box align='end'>
           <IconButton variant='ghost'>
