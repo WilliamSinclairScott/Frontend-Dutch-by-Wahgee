@@ -17,6 +17,11 @@ export async function getAllDivvys() {
   }
 }
 //create a divvy
+/**
+ * 
+ * @param {*} divvyData This is the data for the divvy
+ * @returns This returns the response data from the server
+ */
 export async function createDivvy(divvyData) {
   try {
     const response = await api.post('/divvy', divvyData);
@@ -26,4 +31,15 @@ export async function createDivvy(divvyData) {
     throw error
   }
 }
-
+//get a specific divvy by ID
+export async function getDivvyById(divvyId) {
+  try {
+    const response = await api.get(`/divvy/${divvyId}`);
+    return response.data;
+  } catch (error) {
+    console.error({
+      "Error fetching divvy details:": error.response ? error.response.data : "Network or other error"
+    })
+    throw error;
+  }
+}
