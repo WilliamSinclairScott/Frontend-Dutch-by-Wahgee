@@ -4,8 +4,8 @@ import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
 // import NotiDialog from '../../components/NotiDialog/NotiDIalog';
 // import DeleteDialog from '../../components/DeleteDialog/DeleteDialog';
 
-export default function Transaction () {
-
+export default function Transaction({
+  cost = '$16' }) {
   return (
     <>
     <Flex direction='column' gap='4' mt='5' >
@@ -25,7 +25,7 @@ export default function Transaction () {
           </Table.Row>
           <Table.Row>
             <Table.Cell>Amount</Table.Cell>
-            <Table.Cell justify='end' >$16</Table.Cell>
+            <Table.Cell justify='end' >{cost}</Table.Cell>
 
           </Table.Row>
           <Table.Row>
