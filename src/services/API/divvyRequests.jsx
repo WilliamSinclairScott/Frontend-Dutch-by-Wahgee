@@ -43,3 +43,13 @@ export async function getDivvyById(divvyId) {
     throw error;
   }
 }
+// Update a specific divvy by ID
+export async function updateDivvy(divvyId, divvyData) {
+  try {
+    const response = await api.patch(`/divvys/${divvyId}`, divvyData);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating divvy:", error.response ? error.response.data : "Network or other error");
+    throw error;
+  }
+}
