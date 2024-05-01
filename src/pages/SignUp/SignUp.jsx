@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Flex, Text, Button, TextField } from '@radix-ui/themes'
 import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
-// import { signup } from "../../services/API/user"
+import { signup } from "../../services/API/userRequests"
 
 export default function SignUp() {
   const [displayName, setDisplayName] = useState('')
@@ -10,8 +10,8 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
 
   const handleCreateAccount = () => {
-    console.log('email:', email, 'password:', password, 'userName:', displayName);
-    // signup(email, password, userName)
+    // console.log('email:', email, 'password:', password, 'displayName:', displayName);
+    signup(email, password, displayName)
   }
 
   return (
@@ -53,4 +53,3 @@ export default function SignUp() {
 
   )
 }
-
