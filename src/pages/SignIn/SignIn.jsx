@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { Flex, Heading, Button, TextField, Text } from '@radix-ui/themes'
+import { Flex, TextField, Button, Text } from '@radix-ui/themes'
+import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
+// import { signin } from "../../services/API/user"
 
 
 export default function SignIn() {
@@ -8,15 +10,14 @@ export default function SignIn() {
   const [password, setPassword] = useState('')
 
   const handleAuth = () => {
-    // e.preventDefault()
     console.log('email:', email, 'password:', password);
-    // PlaceholderAuthService(email, password)
+    // signin(email, password)
   }
 
   return (
     <>
       <Flex direction='column'>
-        <Heading align='center' my='9' size='9' >Dutch</Heading>
+        <WelcomeHeader />
         <TextField.Root
           m='2'
           size='3'
@@ -37,9 +38,7 @@ export default function SignIn() {
         </TextField.Root>
         <Button m='2' size='3' onClick={handleAuth}>Log In</Button>
         <Text mt='4' align='center'>Don't have an account?</Text>
-        
-          <Button asChild m='2' size='3' variant='outline'><Link to='/sign-up'>Sign Up</Link></Button>
-        
+        <Button asChild m='2' size='3' variant='outline'><Link to='/sign-up'>Sign Up</Link></Button>
       </Flex>
     </>
 
