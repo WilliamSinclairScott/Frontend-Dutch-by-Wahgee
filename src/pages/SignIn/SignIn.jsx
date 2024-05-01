@@ -84,7 +84,7 @@ const SignIn = () => {
 
       <Flex direction='column' m='4' >
 <Heading align='center' size='9'>Dutch</Heading>
-        <TextField.Root m='2'size='3' placeholder="Email">
+        <TextField.Root m='2'size='3'  type='email' placeholder="Email">
 
         </TextField.Root>
 
