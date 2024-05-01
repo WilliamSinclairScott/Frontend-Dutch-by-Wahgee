@@ -53,3 +53,13 @@ export async function updateDivvy(divvyId, divvyData) {
     throw error;
   }
 }
+// Delete a specific divvy by ID
+export async function deleteDivvy(divvyId) {
+  try {
+    const response = await api.delete(`/divvys/${divvyId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting divvy:", error.response ? error.response.data : "Network or other error");
+    throw error;
+  }
+}
