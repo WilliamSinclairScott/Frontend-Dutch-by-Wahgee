@@ -10,7 +10,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
-      <Theme grayColor="sage" appearance='dark' className='background'>
+      <Theme accentColor='cyan' appearance='dark' className='background'>
         <App />
       </Theme>
     </Router>
