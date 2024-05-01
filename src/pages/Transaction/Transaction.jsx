@@ -4,7 +4,8 @@ import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
 // import NotiDialog from '../../components/NotiDialog/NotiDIalog';
 // import DeleteDialog from '../../components/DeleteDialog/DeleteDialog';
 
-export default function Transaction() {
+export default function Transaction () {
+
   return (
     <>
     <Flex direction='column' gap='4' mt='5' >

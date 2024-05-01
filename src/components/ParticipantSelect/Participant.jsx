@@ -1,7 +1,9 @@
 import { Table, Text, Flex, Checkbox } from '@radix-ui/themes';
 
 
-export default function ParticipantSelect() {
+export default function ParticipantSelect({
+  participantName = 'Will (prop)',
+  balance = '$0' }) {
   return (
 <>
     <Table.Row>
@@ -19,7 +21,7 @@ export default function ParticipantSelect() {
     <Table.Cell justify='start'>
     <Text as='label' size='4'>
                 <Flex gap='2'>
-                <Checkbox color='cyan' size='3' />
+                <Checkbox color='cyan' size='3' defaultChecked />
                 Josh
                 </Flex>
                 </Text>
@@ -30,7 +32,7 @@ export default function ParticipantSelect() {
     <Table.Cell justify='start'>
     <Text as='label' size='4'>
                 <Flex gap='2'>
-                <Checkbox color='orange' size='3' />
+                <Checkbox color='orange' size='3' defaultChecked />
                 Ian
                 </Flex>
                 </Text>
@@ -42,11 +44,11 @@ export default function ParticipantSelect() {
     <Text as='label' size='4'>
                 <Flex gap='2'>
                 <Checkbox color='crimson' size='3' />
-                Will
+                {participantName}
                 </Flex>
                 </Text>
             </Table.Cell>
-            <Table.Cell justify='end'></Table.Cell>
+            <Table.Cell justify='end'>{balance}</Table.Cell>
           </Table.Row>
           <Table.Row>
           </Table.Row>
