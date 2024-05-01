@@ -63,3 +63,13 @@ export async function deleteDivvy(divvyId) {
     throw error;
   }
 }
+// Create a transaction within a divvy
+export async function createTransaction(divvyId, transactionData) {
+  try {
+    const response = await api.post(`/divvys/${divvyId}/transactions`, transactionData);
+    return response.data;
+  } catch (error) {
+    console.error("Error creating transaction:", error.response ? error.response.data : "Network or other error");
+    throw error;
+  }
+}
