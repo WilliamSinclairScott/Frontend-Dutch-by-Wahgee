@@ -6,14 +6,14 @@ import { AddButton } from '../../components/AddButton/AddButton';
 export default function DivvyList() {
   return (
     <>
-    <Flex direction='column' gap='4' mt='5' >
-      <Table.Root variant='surface' size='3'>
-        <Table.Body>
-          <DivvyListItem />
-        </Table.Body>
-      </Table.Root>
-    </Flex>
-    <AddButton />
+      <Flex direction='column' gap='4' mt='5' >
+        <Table.Root size='3'>
+          <Table.Body>
+            <DivvyListItem />
+          </Table.Body>
+        </Table.Root>
+      </Flex>
+      <AddButton />
     </>
   );
 }
