@@ -41,3 +41,15 @@ export async function login(email, password) {
   }
 }
 
+export async function updateUser(userId, updates) {
+  try {
+    const response = await api.patch(`/user/${userId}`, updates);
+    return response.data;
+  } catch (error) {
+    console.error({
+      "Error during update user:": error.response ? error.response.data : "Network or other error"
+    })
+    throw error;
+  }
+}
+
