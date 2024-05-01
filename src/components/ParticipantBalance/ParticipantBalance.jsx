@@ -4,7 +4,9 @@ import { ChevronRightIcon } from '@radix-ui/react-icons'
 
 //TODO: Wire up right arrow icon to open a New Transaction prefilled with Reimbursment type and the other props
 
-export default function ParticipantBalance({ participantName = 'Balance w/ default props', owesWho = 'Participant', balance = '$1 ' }) {
+export default function ParticipantBalance({ 
+  participantName = 'Balance w/ default props', owesWho = 'Participant', 
+  balance = '$1 ' }) {
   return (
     <>
       <Grid columns='3' rows='1' align='center' p='1' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
