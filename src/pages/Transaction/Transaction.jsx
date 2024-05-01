@@ -1,5 +1,6 @@
-import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
+import { Table, Flex, Select, Text, } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/Participant';
+import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
 
 export default function Transaction() {
   return (
@@ -60,8 +61,7 @@ export default function Transaction() {
       <Table.Root variant='surface' size='3'>
           <ParticipantSelect />
           </Table.Root>
-          <TextField.Root placeholder='New Participant' variant='surface' mt='3' size='3' > 
-          </TextField.Root>
+          <ParticipantAdd />
           </Flex>
           
          
