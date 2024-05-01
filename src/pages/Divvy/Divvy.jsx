@@ -1,5 +1,6 @@
 import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
+import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 
 export default function Divvy() {
   return (
@@ -20,7 +21,7 @@ export default function Divvy() {
                 <DivvyDetail />
               </Tabs.Content>
               <Tabs.Content value='balances'>
-                <code>Balances Placeholder</code>
+                <DivvyBalances />
               </Tabs.Content>
             </Box>
           </Tabs.Root>
