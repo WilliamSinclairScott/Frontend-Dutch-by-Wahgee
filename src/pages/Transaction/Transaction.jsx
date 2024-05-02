@@ -64,8 +64,8 @@ export default function Transaction() {
           <ParticipantSelect />
           </Table.Root>
           <ParticipantAdd />
-         {/* <NotiDialog /> */}
-           {/* <DeleteDialog /> */}
+         {/* <NotiDialog /> 
+            <DeleteDialog /> */}
           </Flex>
           
          

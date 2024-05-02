@@ -1,6 +1,10 @@
 import { Dialog, Flex, Button, } from "@radix-ui/themes"
 
-export default function NotiDialog () {
+export default function NotiDialog ({
+  notiTitle = "Can't remove participant",
+  notiMessage = "To remove a participant you first need to remove any associations they have with any Transactions.",
+  notiCancelText = "Dismiss" })
+  {
 
 return (
   <>
@@ -10,13 +14,13 @@ return (
   </Dialog.Trigger> */}
 
   <Dialog.Content maxWidth="450px">
-    <Dialog.Title>Can't Remove Participant</Dialog.Title>
+    <Dialog.Title>{notiTitle}</Dialog.Title>
     <Dialog.Description size="2" mb="4">
-      To remove a participant you first need to remove any associations they have with any Transactions.
+      {notiMessage}
     </Dialog.Description>
     <Flex gap="3" mt="4" justify="end">
       <Dialog.Close>
-        <Button>Okay</Button>
+        <Button>{notiCancelText}</Button>
       </Dialog.Close>
     </Flex>
   </Dialog.Content>
