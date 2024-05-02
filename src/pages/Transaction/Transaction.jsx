@@ -35,10 +35,10 @@ participantName ='New Participant' }) {
             <Select.Root defaultValue='Ian' size='3' >
               <Select.Trigger variant='ghost' />
               <Select.Content>            
-                <Select.Item value='New Participant'>{participantName}Ian</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Josh</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Will</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Arris</Select.Item>
+              <Select.Item value={participantName}>Ian</Select.Item>
+                <Select.Item value={participantName}>Josh</Select.Item>
+                <Select.Item value={participantName}>Will</Select.Item>
+                <Select.Item value={participantName}>Arris</Select.Item>
               </Select.Content>
             </Select.Root>
               </Table.Cell>
@@ -50,10 +50,10 @@ participantName ='New Participant' }) {
             <Select.Root defaultValue='Ian' size='3' >
               <Select.Trigger variant='ghost' />
               <Select.Content>            
-              <Select.Item value='New Participant'>{participantName}Ian</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Josh</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Will</Select.Item>
-                <Select.Item value='New Participant'>{participantName}Arris</Select.Item>
+              <Select.Item value={participantName}>Ian</Select.Item>
+                <Select.Item value={participantName}>Josh</Select.Item>
+                <Select.Item value={participantName}>Will</Select.Item>
+                <Select.Item value={participantName}>Arris</Select.Item>
               </Select.Content>
             </Select.Root>
               </Table.Cell>
