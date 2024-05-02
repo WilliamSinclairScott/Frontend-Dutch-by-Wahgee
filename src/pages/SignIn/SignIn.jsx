@@ -2,16 +2,14 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { Flex, TextField, Button, Text } from '@radix-ui/themes'
 import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
-// import { signin } from "../../services/API/user"
-
+import { login } from '../../services/API/userRequests'
 
 export default function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleAuth = () => {
-    console.log('email:', email, 'password:', password);
-    // signin(email, password)
+    login(email, password)
   }
 
   return (

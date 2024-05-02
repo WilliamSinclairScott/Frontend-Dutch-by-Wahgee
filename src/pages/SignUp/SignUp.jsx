@@ -10,7 +10,6 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
 
   const handleCreateAccount = () => {
-    // console.log('email:', email, 'password:', password, 'displayName:', displayName);
     signup(email, password, displayName)
   }
 
