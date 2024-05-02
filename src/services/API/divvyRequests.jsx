@@ -113,12 +113,7 @@ export async function updateTransaction(divvyId, transactionId, transactionData)
   }
 }
 //delete a transaction within a divvy
-/**
- * 
- * @param {*} divvyId This is the ID of the divvy
- * @param {*} transactionId This is the ID of the transaction
- * @returns This returns the response data from the server
- */
+
 export async function deleteTransaction(divvyId, transactionId) {
   try {
     const response = await api.delete(`/divvy/${divvyId}/transactions/${transactionId}`);
