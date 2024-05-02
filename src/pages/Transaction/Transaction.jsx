@@ -1,11 +1,12 @@
 import { Table, Flex, Select, Text, } from '@radix-ui/themes';
-import ParticipantSelect from '../../components/ParticipantSelect/Participant';
+import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
 import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
 // import DivvyNotiDialog from '../../components/DivvyNotiDialog/DivvyNotiDialog';
 // import DivvyAlertDialog from '../../components/DivvyAlertDialog/DivvyAlertDialog';
 
 export default function Transaction({
-  cost = '$16' }) {
+  cost = '$16',
+participantName ='New Participant' }) {
   return (
     <>
     <Flex direction='column' gap='4' mt='5' >
@@ -34,10 +35,10 @@ export default function Transaction({
             <Select.Root defaultValue='Ian' size='3' >
               <Select.Trigger variant='ghost' />
               <Select.Content>            
-                <Select.Item value='Ian'>Ian</Select.Item>
-                <Select.Item value='Will'>Will</Select.Item>
-                <Select.Item value='Josh'>Josh</Select.Item>
-                <Select.Item value='Arris'>Arris</Select.Item>
+              <Select.Item value={participantName}>Ian</Select.Item>
+                <Select.Item value={participantName}>Josh</Select.Item>
+                <Select.Item value={participantName}>Will</Select.Item>
+                <Select.Item value={participantName}>Arris</Select.Item>
               </Select.Content>
             </Select.Root>
               </Table.Cell>
@@ -49,10 +50,10 @@ export default function Transaction({
             <Select.Root defaultValue='Ian' size='3' >
               <Select.Trigger variant='ghost' />
               <Select.Content>            
-                <Select.Item value='Ian'>Ian</Select.Item>
-                <Select.Item value='Will'>Will</Select.Item>
-                <Select.Item value='Josh'>Josh</Select.Item>
-                <Select.Item value='Arris'>Arris</Select.Item>
+              <Select.Item value={participantName}>Ian</Select.Item>
+                <Select.Item value={participantName}>Josh</Select.Item>
+                <Select.Item value={participantName}>Will</Select.Item>
+                <Select.Item value={participantName}>Arris</Select.Item>
               </Select.Content>
             </Select.Root>
               </Table.Cell>
