@@ -2,7 +2,7 @@ import { Table, Text, Flex, Checkbox } from '@radix-ui/themes';
 
 
 export default function ParticipantSelect({
-  participantName = 'Will (prop)',
+  participantName = 'New Participant',
   balance = '$0' }) {
   return (
 <>
@@ -44,7 +44,7 @@ export default function ParticipantSelect({
     <Text as='label' size='4'>
                 <Flex gap='2'>
                 <Checkbox color='crimson' size='3' />
-                {participantName}
+                {participantName} Will
                 </Flex>
                 </Text>
             </Table.Cell>
