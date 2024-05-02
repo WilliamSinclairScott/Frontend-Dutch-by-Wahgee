@@ -48,8 +48,8 @@ export function getUserId() {
 export function getDivvys() {
   try {
     const userData = sessionStorage.getItem('dutch-user-object'); 
-    const userObjects = JSON.parse(userData);
-    const divvys = userObjects.Divvys;
+    const userObject = JSON.parse(userData);
+    const divvys = userObject.data.Divvys;
     return divvys.map(divvy => ({
       name: divvy.divvyName,
       id: divvy._id
@@ -60,3 +60,16 @@ export function getDivvys() {
   }
 }
 
+export function getDivvyDetails(_id) {
+  try {
+    const userData = sessionStorage.getItem('dutch-user-object'); 
+    const userObject = JSON.parse(userData);
+    const divvys = userObject.data.Divvys;
+    const divvyDetails = divvys.find(divvy => divvy._id === _id);
+    console.log(divvyDetails);
+    return divvyDetails;
+  } catch (error) {
+    console.error(`Error retrieving divvy ${_id} from session storage:`, error);
+    throw error;
+  }
+}
