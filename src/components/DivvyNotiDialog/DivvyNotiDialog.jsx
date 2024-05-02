@@ -1,9 +1,9 @@
 import { Dialog, Flex, Button, } from "@radix-ui/themes"
 
-export default function NotiDialog ({
-  notiTitle = "Can't remove participant",
-  notiMessage = "To remove a participant you first need to remove any associations they have with any Transactions.",
-  notiCancelText = "Dismiss" })
+export default function DivvyNotiDialog ({
+  divvyNotiTitle = "Can't remove participant",
+  divvyNotiMessage = "To remove a participant you first need to remove any associations they have with any Transactions.",
+  divvyNotiCancelText = "Dismiss" })
   {
 
 return (
@@ -14,13 +14,13 @@ return (
   </Dialog.Trigger> */}
 
   <Dialog.Content maxWidth="450px">
-    <Dialog.Title>{notiTitle}</Dialog.Title>
+    <Dialog.Title>{divvyNotiTitle}</Dialog.Title>
     <Dialog.Description size="2" mb="4">
-      {notiMessage}
+      {divvyNotiMessage}
     </Dialog.Description>
     <Flex gap="3" mt="4" justify="end">
       <Dialog.Close>
-        <Button>{notiCancelText}</Button>
+        <Button>{divvyNotiCancelText}</Button>
       </Dialog.Close>
     </Flex>
   </Dialog.Content>

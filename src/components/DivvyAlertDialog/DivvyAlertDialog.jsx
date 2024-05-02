@@ -1,17 +1,17 @@
 import { AlertDialog, Flex, Button } from "@radix-ui/themes"
 
-export default function DeleteDialog(props) {
+export default function DivvyAlertDialog(props) {
   const {
-    deleteItem = '',
-    deleteItemTitle = 'this item',
-    deleteTitle = 'Delete this',
-    deleteMessage = "Are you sure you want to delete", // Fixed typo in "want"
-    deleteCancelText = 'Cancel',
-    deleteActionText = 'Delete'
+    divvyAlertItem = '',
+    divvyAlertItemTitle = 'this item',
+    divvyAlertTitle = 'Delete this',
+    divvyAlertMessage = "Are you sure you want to delete", 
+    divvyAlertCancelText = 'Cancel',
+    divvyAlertActionText = 'Delete'
   } = props;
 
   //TODO figure out how to pass in the an action to delete the relevant item from LocalStorage and/or call the API to delete it
-  // const deleteItemAction = props.deleteItemAction
+  // const divvyAlertItemAction = props.divvyAlertItemAction
 
   return (
     <>
@@ -21,20 +21,20 @@ export default function DeleteDialog(props) {
           <Button>Revoke access</Button>
         </AlertDialog.Trigger> */}
         <AlertDialog.Content maxWidth="450px">
-          <AlertDialog.Title>{deleteTitle} {deleteItem}</AlertDialog.Title>
+          <AlertDialog.Title>{divvyAlertTitle} {divvyAlertItem}</AlertDialog.Title>
           <AlertDialog.Description size="2">
-            {deleteMessage} {deleteItemTitle}?
+            {divvyAlertMessage} {divvyAlertItemTitle}?
           </AlertDialog.Description>
 
           <Flex gap="3" mt="4" justify="end">
             <AlertDialog.Cancel>
               <Button variant="soft" color="gray">
-                {deleteCancelText}
+                {divvyAlertCancelText}
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
               <Button variant="solid" color="red">
-                {deleteActionText}
+                {divvyAlertActionText}
               </Button>
               {/* //TODO add actual delete action  */}
             </AlertDialog.Action>

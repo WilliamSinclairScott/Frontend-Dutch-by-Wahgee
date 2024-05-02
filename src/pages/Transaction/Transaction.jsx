@@ -1,8 +1,8 @@
 import { Table, Flex, Select, Text, } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/Participant';
 import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
-// import NotiDialog from '../../components/NotiDialog/NotiDIalog';
-// import DeleteDialog from '../../components/DeleteDialog/DeleteDialog';
+// import DivvyNotiDialog from '../../components/DivvyNotiDialog/DivvyNotiDialog';
+// import DivvyAlertDialog from '../../components/DivvyAlertDialog/DivvyAlertDialog';
 
 export default function Transaction() {
   return (
@@ -64,8 +64,8 @@ export default function Transaction() {
           <ParticipantSelect />
           </Table.Root>
           <ParticipantAdd />
-         {/* <NotiDialog /> 
-            <DeleteDialog /> */}
+         {/* <DivvyNotiDialog /> 
+            <DivvyAlertDialog /> */}
           </Flex>
           
          
