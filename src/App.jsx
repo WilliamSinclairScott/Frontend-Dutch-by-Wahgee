@@ -12,6 +12,9 @@ function App() {
   function hideNav () {
     return pathname === '/' || pathname === '/sign-up'
   }
+  
+  //TODO: add function to pass down to pages that will pass the page's component name and desired page title back up to the App component and store it in a variable. Also pass that down to the NavHeader component to display the page name.
+
   return (
     <main>
       {hideNav() ? null : <NavHeader />}
