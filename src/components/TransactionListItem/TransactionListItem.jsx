@@ -2,7 +2,16 @@ import { Flex, Grid, Box, Text, Table, Link as RadixLink } from '@radix-ui/theme
 import { RefundIcon, ExpenseIcon, ReimbursementIcon } from '../Icons/Icons'
 import { Link } from 'react-router-dom'
 
-
+/**
+ * 
+ * @param {*} type
+ * @param {*} transactionName
+ * @param {*} amount
+ * @param {*} details
+ * @param {*} date
+ * @param {*} _id
+ * @returns Makes a table row with all the relevant transaction details
+ */
 export default function TransactionListItem({
   type = 'Expense',
   transactionName = 'Expense using default Props',

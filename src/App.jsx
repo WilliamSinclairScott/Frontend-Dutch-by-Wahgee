@@ -22,10 +22,10 @@ function App() {
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/divvys" element={<DivvyList />} />
-        <Route path="/divvys/:divvy-id" element={<Divvy />} />
+        <Route path="/divvys/:divvyId" element={<Divvy />} />
         <Route path="/divvys/new" element={<Divvy />} />
-        <Route path="/divvys/:divvy-id/:transaction-id" element={<Transaction />} />
-        <Route path="/divvys/:divvy-id/new-transaction" element={<Transaction />} />
+        <Route path="/divvys/:divvyId/:transactionId" element={<Transaction />} />
+        <Route path="/divvys/:divvyId/new-transaction" element={<Transaction />} />
       </Routes>
     </main>
   )
