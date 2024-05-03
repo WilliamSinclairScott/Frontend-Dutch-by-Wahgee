@@ -1,41 +1,32 @@
 import api from './apiConnect';
 
-//get all divvys
-/**
- * 
- * @returns
- */
-//Retrieves all divvys from the server
-export async function getAllDivvys() {
-  try {
-    const response = await api.get('/divvy'); //sends a GET request to the '/divvy' endpoint
-    return response.data;
-  } catch (error) {
-    console.error({ 
-      "Error during get all divvys:": error.response ? error.response.data : "Network or other error"
-    })
-    throw error;
-  }
-}
 
 /**
  * 
- * @param {*} divvyData This is the data for the divvy
- * @returns This returns the response data from the server
+ * @param {*} divvyName String
+ * @param {*} owner _id of the user, $oid
+ * @param {*} participants [...String]
+ * @returns Success message, or error message
  */
-//creates a new divvy with the data provided
-export async function createDivvy(divvyData) {
+export async function createDivvy(divvyName, owner, participants) {
   try {
-    const response = await api.post('/divvy', divvyData); //Sends a POST request with divvyData to the '/divvy/' endpoint
-    return response.data //returns the response data from the server
+    const divvyData = {
+      "divvyName" : divvyName,
+      "owner" : owner,
+      "participants" : participants
+    }
+
+    const response = await api.post('/divvy', divvyData);
+    //intercepter logic
+    return response.data
   } catch (error) {
     console.error("Error during create divvy:", error.response ? error.response.data : "Network or other error")
     throw error
   }
 }
-//get a specific divvy by ID
+
 /**
- * 
+ * get a specific divvy by ID
  * @param {*} divvyId This is the ID of the divvy
  * @returns This returns the response data from the server
  */

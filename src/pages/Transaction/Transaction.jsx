@@ -51,7 +51,7 @@ participantName ='New Participant' }) {
             <Select.Root defaultValue='Ian' size='3' >
               <Select.Trigger variant='ghost' />
               <Select.Content>            
-              <Select.Item value={participantName}>Ian</Select.Item>
+                <Select.Item value={participantName}>Ian</Select.Item>
                 <Select.Item value={participantName}>Josh</Select.Item>
                 <Select.Item value={participantName}>Will</Select.Item>
                 <Select.Item value={participantName}>Arris</Select.Item>

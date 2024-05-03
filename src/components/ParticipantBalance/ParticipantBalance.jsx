@@ -2,94 +2,56 @@ import { Grid, Box, IconButton, Separator, Text } from '@radix-ui/themes'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 
 
+
 //TODO: Wire up right arrow icon to open a New Transaction prefilled with Reimbursment type and the other props
 // Component to display a participant's balance and who they owe.
 export default function ParticipantBalance({ 
-  participantName = 'Balance w/ default props', owesWho = 'Participant', 
-  balance = '$1 ' }) {
-  return (
+  participantName = 'InputParticipantName', 
+  owesWho = [], balance = 'InputBalance' })
+  {
+    if (owesWho.length)console.log(owesWho)
+    let balanceColor = 'black'
+    let owesWhoText = ''
+    let hideArrowButton = false
+    //1. Participant owes money
+    if (balance < 0) {
+      balanceColor = 'red'
+      for (let owe of owesWho){
+        console.log(owe)
+        owesWhoText += ` Owes ${owe.name} $${owe.amount},`
+      }
+      //remove last comma
+      owesWhoText = owesWhoText.slice(0, -1)
+      hideArrowButton = true
+    }
+    //2. Participant is owed money
+    if (balance > 0) {
+      //do some stuff
+      balanceColor = 'green'
+    }
+    //3. Participant has no balance
+    if (balance === 0) {
+      //do some stuff
+      balanceColor = 'gray'
+    }
+    return (
     <>
-      <Grid columns='3' rows='1' align='center' p='1' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
-        <Box pr='1'>
-          <Text size='6'>Aris</Text>
-          <Text size='4' color='gray'> owes Ian</Text>
-
-        </Box>
-        <Box align='end'>
-          <Text size='6' color='red'>$12</Text>
-        </Box>
-        <Box align='end'>
-          <IconButton size='1' variant='ghost'>
-          <ChevronRightIcon height='36px' width='36px'/>
-          </IconButton>
-        </Box>
-      </Grid>
-      <Separator my="1" size="4" />
-
-      <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
-      <Box p='2'>
-          <Text size='6'>Josh</Text>
-          <Text size='4' color='gray'></Text>
-
-        </Box>
-        <Box align='end'>
-          <Text size='6' color='gray'>$0</Text>
-        </Box>
-        <Box align='end'>
-          <IconButton variant='ghost'>
-          {/* <ChevronRightIcon height='36px' width='36px'/> */}
-          </IconButton>
-        </Box>
-      </Grid>
-      <Separator my="1" size="4" />
-
-      <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
-      <Box p='2'>
-          <Text size='6'>Ian</Text>
-          <Text size='4' color='gray'></Text>
-
-        </Box>
-        <Box align='end'>
-          <Text size='6' color='green'>+$20</Text>
-        </Box>
-        <Box align='end'>
-          <IconButton variant='ghost'>
-          {/* <ChevronRightIcon height='36px' width='36px'/> */}
-          </IconButton>
-        </Box>
-      </Grid>
-      <Separator my="1" size="4" />
-
-      <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
-      <Box p='2'>
-          <Text size='6'>Will</Text>
-          <Text size='4' color='gray'> owes Ian</Text>
-
-        </Box>
-        <Box align='end'>
-          <Text size='6' color='red'>$8</Text>
-        </Box>
-        <Box align='end'>
-          <IconButton variant='ghost'>
-          <ChevronRightIcon height='36px' width='36px'/>
-          </IconButton>
-        </Box>
-      </Grid>
-      <Separator my="1" size="4" />
-
       <Grid columns='3' rows='1' gapX='3' align='center' style={{ gridTemplateColumns: '1fr minmax(auto, auto) 36px' }}>
       <Box p='2'>
           <Text size='6'>{participantName}</Text>
-          <Text size='4' color='gray'> owes {owesWho}</Text>
+          <Text size='4' color='gray'>{owesWhoText}</Text>
 
         </Box>
         <Box align='end'>
-          <Text size='6' color='red'>{balance}</Text>
+          <Text size='6' color={balanceColor}>{balance}</Text>
         </Box>
         <Box align='end'>
-          <IconButton variant='ghost'>
-          <ChevronRightIcon height='36px' width='36px'/>
-          </IconButton>
+          {
+            hideArrowButton &&
+            <IconButton variant='ghost'>
+              <ChevronRightIcon height='36px' width='36px'/>
+            </IconButton>
+          }
         </Box>
       </Grid>
       <Separator my="1" size="4" />
