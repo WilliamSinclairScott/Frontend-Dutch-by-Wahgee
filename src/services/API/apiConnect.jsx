@@ -1,17 +1,25 @@
 import axios from 'axios'
 import { saveResponseToSession } from './apiHelpers'
+// Creating an instance of axios with default properties
 const api = axios.create({
+// Setting the base URL for all HTTP requests
   baseURL: 'https://dutch-api-96185a8842ba.herokuapp.com',
-  // baseURL: 'http://localhost:7777',
+// Uncomment the following line to use a local server during development
+// baseURL: 'http://localhost:7777',
+// Enabling credentials such as cookies, authorization headers or TLS client certificates
   withCredentials: true
 })
+// Adding a request interceptor to include the authorization token in every request
 api.interceptors.request.use(config => {
+// Retrieving the user's token from localStorage
     const token = localStorage.getItem('token')
+    // Setting the Authorization header with the token for secure requests
     config.headers.Authorization = token
     return config
 })
-
+// Adding a response interceptor to process the response before passing it to then/catch
 api.interceptors.response.use(response => {
+  // Saving the response data to session storage using a helper function
   saveResponseToSession(response)
   return response
 })

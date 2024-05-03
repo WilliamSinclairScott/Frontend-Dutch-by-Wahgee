@@ -1,11 +1,12 @@
 //save response to sesion storage
 /**
- * 
- * @param {*} response This is the response from the server
+ * Saves the API response to session storage
+ * @param {*} response The response object from the API call.
  */
 export async function saveResponseToSession (response) {
   try {
     sessionStorage.setItem('dutch-user-object', JSON.stringify(response));
+    // Save the entire response as a string in session storage
   } catch (error) {
     console.error({
       "Error saving response to session storage:": error.response ? error.response.data : "Network or other error"
