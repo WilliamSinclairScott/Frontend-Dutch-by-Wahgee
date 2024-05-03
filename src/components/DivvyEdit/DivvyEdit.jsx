@@ -3,7 +3,7 @@ import ParticipantEdit from '../ParticipantEdit/ParticipantEdit'
 import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
 
 //TODO: Map over participants prop (array of objects or maybe array of strings) to create ParticipantEdit components on the page
-
+// Component to edit divvy details, including updating title and participants.
 export default function DivvyEdit({ divvyTitle, participants }) {
   return (
     <>

@@ -3,7 +3,7 @@ import { ChevronRightIcon } from '@radix-ui/react-icons'
 
 
 //TODO: Wire up right arrow icon to open a New Transaction prefilled with Reimbursment type and the other props
-
+// Component to display a participant's balance and who they owe.
 export default function ParticipantBalance({ 
   participantName = 'Balance w/ default props', owesWho = 'Participant', 
   balance = '$1 ' }) {

@@ -3,7 +3,8 @@ import { RefundIcon, ExpenseIcon, ReimbursementIcon } from '../Icons/Icons'
 import { Link } from 'react-router-dom'
 
 /**
- * 
+ * Component to display detailed information for a transaction.
+ * Includes logic for dynamic rendering based on transaction type.
  * @param {*} transactionType
  * @param {*} transactionName
  * @param {*} amount
@@ -20,7 +21,7 @@ export default function TransactionListItem({
   date = new Date(),
   _id
 }) {
-  let TransactionIcon
+  let TransactionIcon // Icon that changes based on the transaction type
   function getIcon() {
     if (transactionType === 'expense') {
       TransactionIcon = ExpenseIcon
@@ -39,7 +40,7 @@ export default function TransactionListItem({
     if (!date) {
       return ''
     }
-    return date.toLocaleDateString("en-US", { month: "long", day: "2-digit" })
+    return date.toLocaleDateString("en-US", { month: "long", day: "2-digit" }) // Format the date to a more readable format
   }
   formatDate(date)
   return (

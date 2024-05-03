@@ -2,6 +2,8 @@ import { Table, Flex, Text, IconButton, Link as RadixLink } from '@radix-ui/them
 import { ChevronRightIcon } from '@radix-ui/react-icons'
 import { Link } from 'react-router-dom'
 
+// Component to display a single divvy in a list of divvies 
+// providing a link to the divvy detail page.
 export default function DivvyListItem({ divvyName, _id }) {
   return (
     <>

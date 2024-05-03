@@ -1,6 +1,6 @@
 import { Box, Heading, Text, Em } from '@radix-ui/themes'
 
-
+// Display a welcoming header with a tagline for the app.
 export default function WelcomeHeader() {
   return (
     <>

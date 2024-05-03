@@ -1,4 +1,5 @@
 
+// Template component for demonstration or placeholder usage.
 export default function Template() {
   return (
     <header>

@@ -1,6 +1,6 @@
 import { Table, Text, Flex, Checkbox } from '@radix-ui/themes';
 
-
+// Component for selecting participants with checkboxes, showing participant names and balances.
 export default function ParticipantSelect({
   participantName = 'New Participant',
   balance = '$0' }) {
