@@ -1,12 +1,13 @@
 import { Grid, Box, IconButton, Separator, Text } from '@radix-ui/themes'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
+import { createParticipantRembursementRedirect } from '../../services/Logic/buttonRerouteLogic'
 
+//TODO: Pass information through createParticipantRembursementRedirect function
 
 export default function ParticipantBalance({ 
   participantName = 'InputParticipantName', 
   owesWho = [], balance = 'InputBalance' })
   {
-    if (owesWho.length)console.log(owesWho)
     let balanceColor = 'black'
     let owesWhoText = ''
     let hideArrowButton = false
@@ -14,7 +15,6 @@ export default function ParticipantBalance({
     if (balance < 0) {
       balanceColor = 'red'
       for (let owe of owesWho){
-        console.log(owe)
         owesWhoText += ` Owes ${owe.name} $${owe.amount},`
       }
       //remove last comma
@@ -46,7 +46,7 @@ export default function ParticipantBalance({
           {
             hideArrowButton &&
             <IconButton variant='ghost'>
-              <ChevronRightIcon height='36px' width='36px'/>
+              <ChevronRightIcon height='36px' width='36px' onClick={createParticipantRembursementRedirect}/>
             </IconButton>
           }
         </Box>

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { saveResponseToSession } from './apiHelpers'
+import { saveResponseToSession } from '../SessionStorage/StoreAndUpdate'
 const api = axios.create({
   baseURL: 'https://dutch-api-96185a8842ba.herokuapp.com',
   // baseURL: 'http://localhost:7777',
