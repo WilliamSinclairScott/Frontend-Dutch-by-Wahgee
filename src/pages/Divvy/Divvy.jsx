@@ -3,9 +3,9 @@ import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 
 export default function Divvy() {
+
   return (
     <>
-      <Box>
         <Flex direction='column'>
           <Tabs.Root defaultValue='details'>
             <Tabs.List justify='center'>
@@ -26,7 +26,6 @@ export default function Divvy() {
             </Box>
           </Tabs.Root>
         </Flex >
-      </Box>
     </>
   )
 }
