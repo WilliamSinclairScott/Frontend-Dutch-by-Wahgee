@@ -12,6 +12,9 @@ function App() {
   function hideNav () {
     return pathname === '/' || pathname === '/sign-up'
   }
+  
+  //TODO: add function to pass down to pages that will pass the page's component name and desired page title back up to the App component and store it in a variable. Also pass that down to the NavHeader component to display the page name.
+
   return (
     <main>
       {hideNav() ? null : <NavHeader />}
@@ -19,10 +22,10 @@ function App() {
         <Route path="/" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/divvys" element={<DivvyList />} />
-        <Route path="/divvys/:divvy-id" element={<Divvy />} />
+        <Route path="/divvys/:divvyId" element={<Divvy />} />
         <Route path="/divvys/new" element={<Divvy />} />
-        <Route path="/divvys/:divvy-id/:transaction-id" element={<Transaction />} />
-        <Route path="/divvys/:divvy-id/new-transaction" element={<Transaction />} />
+        <Route path="/divvys/:divvyId/:transactionId" element={<Transaction />} />
+        <Route path="/divvys/:divvyId/new-transaction" element={<Transaction />} />
       </Routes>
     </main>
   )

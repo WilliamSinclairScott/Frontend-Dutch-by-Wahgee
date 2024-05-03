@@ -7,6 +7,20 @@ import { NavLink } from 'react-router-dom'
 //TODO: Add Heading resizing CSS, etc to handle long titles (ideally we wrap and change font size insead of truncating)
 
 export default function NavHeader({ title = 'Dutch' }) {
+  const shareData = {
+    title: 'Share Dutch',
+    text: 'Check out Dutch on this link!',
+    url: 'tbd'
+  };
+
+  const handleShare = async () => {
+    try {
+      await navigator.share(shareData) ;
+      console.log('Content shared successfully!');
+    } catch (error) {
+      console.error('Error sharing:' , error);
+    }
+    };
 
   return (
     <nav>
@@ -20,7 +34,7 @@ export default function NavHeader({ title = 'Dutch' }) {
         </Box>
         <Heading truncate size='6'>{title}</Heading>
         <Box width='96px' align='end'>
-          <IconButton size='3' mr='2' variant="ghost" aria-label="Share">
+          <IconButton size='3' mr='2' variant="ghost" aria-label="Share" onClick={handleShare} >
             <Share2Icon width='28' height='28' />
           </IconButton>
           <DropdownMenu.Root>
