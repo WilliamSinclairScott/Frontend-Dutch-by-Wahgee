@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
 import { getDivvyDetails } from '../../services/API/apiHelpers'
-
-//TODO Add turnery : Expense type reimbursement true show 'Paid to' table row, false show ParticipantSelect
+import NavHeader from '../../components/NavHeader/NavHeader';
 
 export default function Transaction() {
   const { divvyId } = useParams()
@@ -24,16 +23,11 @@ export default function Transaction() {
   const handleCostChange = (e) => { setCurrentCost(e.target.value) }
   const handlePaidByChange = (e) => { setCurrentPaidBy(e.target.value) }
 
-  // TODO: Handle array of participants & calculations
-  // const [currentParticipants, setCurrentParticipants] = useState({ participants });
-  // const handleParticipantsChange = (e) => { setCurrentParticipants(e.target.value) }
-
   // TODO: Handle if expense type is Reimbursement so there's only one participant with an owesWho, meaning that should be the value of currentPaidTo
-  // const [currentPaidTo, setCurrentPaidTo] = useState(TBD);
-  // const handlePaidToChange = (e) => { setCurrentPaidTo(e.target.value) }
 
   return (
     <>
+      <NavHeader title='Edit Transaction' />
       <Flex direction='column' gap='4' mt='5' >
         <Table.Root size='3'>
           <Table.Body >
@@ -43,13 +37,17 @@ export default function Transaction() {
               </Table.Cell>
               <Table.Cell justify='end' >
                 <TextField.Root
+                  justify='end'
                   type='text'
                   size='3'
-                  className='input-field-right'
+                  style={{ textAlign: 'right' }}
                   placeholder='New Transaction'
                   defaultValue={currentTransactionName}
                   onChange={handleTransactionNameChange}
-                />
+                >
+                  <TextField.Slot> </TextField.Slot>
+                  <TextField.Slot px='1'></TextField.Slot>
+                </TextField.Root>
               </Table.Cell>
             </Table.Row>
             <Table.Row align='center'>
@@ -76,10 +74,13 @@ export default function Transaction() {
                   justify='end'
                   size='3'
                   type="number"
-                  className='input-field-right'
+                  style={{ textAlign: 'right' }}
                   defaultValue={Number(currentCost)}
                   onChange={handleCostChange}
-                />
+                >
+                  <TextField.Slot>$</TextField.Slot>
+                  <TextField.Slot px='0'></TextField.Slot>
+                </TextField.Root>
               </Table.Cell>
             </Table.Row>
             <Table.Row align='center'>
