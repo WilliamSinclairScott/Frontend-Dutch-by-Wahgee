@@ -16,7 +16,7 @@ export async function saveResponseToSession (response) {
 // Function to get the user's display name from session storage
 /**
  * 
- * @returns This returns the user display name from session storage
+ * @returns String This returns the user display name from session storage
  */
 export function getUserDisplayName() {
   const userData = sessionStorage.getItem('dutch-user-object');
@@ -24,7 +24,7 @@ export function getUserDisplayName() {
     const userObject = JSON.parse(userData);
     return userObject.displayName; 
   }
-  return null; 
+  return Error('No user data found in session storage'); 
 }
 
 // Function to get the user's ID from session storage
