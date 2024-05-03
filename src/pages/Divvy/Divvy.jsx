@@ -2,6 +2,7 @@ import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 
+// Main component for the Divvy page, uses tabs to switch between detailed view and balance overview.
 export default function Divvy() {
 
   return (

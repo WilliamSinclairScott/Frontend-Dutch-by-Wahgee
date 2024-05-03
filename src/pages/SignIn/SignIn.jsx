@@ -4,9 +4,10 @@ import { Flex, TextField, Button, Text } from '@radix-ui/themes'
 import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
 import { login } from '../../services/API/userRequests'
 
+// SignIn component for user authentication.
 export default function SignIn() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('') // State for storing user's email input.
+  const [password, setPassword] = useState('') // State for storing user's password input.
 
   const handleAuth = () => {
     login(email, password)

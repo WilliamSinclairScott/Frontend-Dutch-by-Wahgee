@@ -4,6 +4,7 @@ import ParticipantAdd from '../../components/ParticipantAdd/ParticipantAdd';
 // import DivvyNotiDialog from '../../components/DivvyNotiDialog/DivvyNotiDialog';
 // import DivvyAlertDialog from '../../components/DivvyAlertDialog/DivvyAlertDialog';
 
+// Component to manage transactions within a specific divvy.
 export default function Transaction({
   cost = '$16',
 participantName ='New Participant' }) {

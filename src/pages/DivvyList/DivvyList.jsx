@@ -3,8 +3,9 @@ import DivvyListItem from '../../components/DivvyListItem/DivvyListItem'
 import { AddButton } from '../../components/AddButton/AddButton'
 import { getDivvys } from '../../services/API/apiHelpers'
 
+// Component that renders a list of all divvys using data fetched from the API.
 export default function DivvyList() {
-  const divvys = getDivvys()
+  const divvys = getDivvys() // Fetching divvy data from the session storage via API helper.
 
   return (
     <>

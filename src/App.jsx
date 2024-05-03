@@ -8,13 +8,15 @@ import Divvy from './pages/Divvy/Divvy'
 import Transaction from './pages/Transaction/Transaction'
 
 function App() {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation() // Using the useLocation hook to get the current pathname
+  // Function to determine if the navigation bar should be hidden.
   function hideNav () {
+    // Returns true if the current route is either the root or sign-up page, where we don't want to show the nav header.
     return pathname === '/' || pathname === '/sign-up'
   }
   
   //TODO: add function to pass down to pages that will pass the page's component name and desired page title back up to the App component and store it in a variable. Also pass that down to the NavHeader component to display the page name.
-
+// Main render block of the app, using conditional rendering for the NavHeader component.
   return (
     <main>
       {hideNav() ? null : <NavHeader />}
