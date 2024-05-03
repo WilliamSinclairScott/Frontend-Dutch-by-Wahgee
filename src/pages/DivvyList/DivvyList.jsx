@@ -12,7 +12,10 @@ export default function DivvyList() {
         <Table.Root size='3'>
           <Table.Body>
             {divvys.map(divvy => (
-              <DivvyListItem divvyName={divvy.name} _id={divvy.id} key={divvy.id} />
+              <DivvyListItem
+                divvyName={divvy.name}
+                _id={divvy.id}
+                key={divvy.id} />
             ))}
           </Table.Body>
         </Table.Root>
