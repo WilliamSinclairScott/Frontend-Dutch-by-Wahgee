@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 /**
  * 
- * @param {*} type
+ * @param {*} transactionType
  * @param {*} transactionName
  * @param {*} amount
  * @param {*} details
@@ -13,190 +13,37 @@ import { Link } from 'react-router-dom'
  * @returns Makes a table row with all the relevant transaction details
  */
 export default function TransactionListItem({
-  type = 'Expense',
-  transactionName = 'Expense using default Props',
-  amount = '$0',
-  details = 'pass details in here',
+  transactionType,
+  transactionName,
+  amount,
+  details = 'Logic needed for this field',
   date = new Date(),
-  _id = '1234567890'
+  _id
 }) {
   let TransactionIcon
   function getIcon() {
-    if (type === 'Expense') {
+    if (transactionType === 'expense') {
       TransactionIcon = ExpenseIcon
     }
-    if (type === 'Refund') {
+    if (transactionType === 'refund') {
       TransactionIcon = RefundIcon
     }
-    if (type === 'Reimbursement') {
-      TransactionIcon = RefundIcon
+    if (transactionType === 'reimbursement') {
+      TransactionIcon = ReimbursementIcon
     }
   }
   getIcon()
 
-
+  
   function formatDate(date) {
+    if (!date) {
+      return ''
+    }
     return date.toLocaleDateString("en-US", { month: "long", day: "2-digit" })
   }
   formatDate(date)
   return (
     <>
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center' color='white'>
-                  <ExpenseIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>2 Coronas</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>$16</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Ian, Josh</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center'>
-                  <ExpenseIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>Guinness</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>$8</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Will</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center'>
-                  <ExpenseIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>Whiskey</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>$12</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Aris</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center'>
-                  <ExpenseIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>Nachos</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>$16</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Aris, Josh, Ian, Will</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center'>
-                  <RefundIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>Soggy Nachos</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>+$16</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Aris, Josh, Ian, Will</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
-      <Table.Row>
-        <Table.Cell>
-          <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
-            <RadixLink asChild underline='none'>
-              <Link to={`./${_id}`}>
-                <Flex gridRowStart='1' gridRowEnd='3' align='center' justify='center'>
-                  <ReimbursementIcon color='white' />
-                </Flex>
-                <Box>
-                  <Text size='4'>Cash</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='4'>$8</Text>
-                </Box>
-                <Box>
-                  <Text size='2' color='gray'>Josh reimbursed Ian</Text>
-                </Box>
-                <Box align='end'>
-                  <Text size='2' color='gray'>April 26</Text>
-                </Box>
-              </Link>
-            </RadixLink>
-          </Grid>
-        </Table.Cell>
-      </Table.Row>
-
       <Table.Row>
         <Table.Cell>
           <Grid asChild columns='3' rows='2' gapX='3' style={{ gridTemplateColumns: 'minmax(auto, auto) 1fr minmax(auto, auto)', gridTemplateRows: 'minmax(auto, auto)' }}>
@@ -209,7 +56,7 @@ export default function TransactionListItem({
                   <Text size='4'>{transactionName}</Text>
                 </Box>
                 <Box align='end' justify='end'>
-                  <Text size='4'>{amount}</Text>
+                  <Text size='4'>${amount}</Text>
                 </Box>
                 <Box>
                   <Text size='2' color='gray'>{details}</Text>
