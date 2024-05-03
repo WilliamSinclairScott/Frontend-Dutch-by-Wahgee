@@ -7,17 +7,23 @@ import { useParams } from 'react-router-dom'
 export default function DivvyDetail() {
   const { divvyId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
-const divvyTransactions = divvyDetails.transactons
+  const divvyTransactions = divvyDetails.transactions
 
   return (
     <>
       <Flex direction='column' justify='start'>
         <Table.Root size='1'>
-          <Table.Body>  
-            {divvyTransactions.map(transaction => 
-            <TransactionListItem divvyType={transaction.type} divvyAmount={transaction.amount} divvyDate={transaction.date} _id={transaction.id} divvyTransactionName={transaction.transactionName} key={transaction.id} />
-            )}
-            
+          <Table.Body>
+            {divvyTransactions.map(transaction => (
+              <TransactionListItem
+                key={transaction._id}
+                transactionType={transaction.type}
+                amount={transaction.amount}
+                date={transaction.date}
+                _id={transaction._id}
+                transactionName={transaction.transactionName}
+              />
+            ))}
           </Table.Body>
         </Table.Root>
       </Flex>
