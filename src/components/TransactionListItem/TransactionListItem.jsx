@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
  * @param {*} transactionName
  * @param {*} amount
  * @param {*} details
+ * @param {*} paidBy
  * @param {*} date
  * @param {*} _id
  * @returns Makes a table row with all the relevant transaction details
@@ -16,20 +17,26 @@ export default function TransactionListItem({
   transactionType,
   transactionName,
   amount,
-  details = 'Logic needed for this field',
+  paidBy,
+  details,
   date = new Date(),
   _id
 }) {
+  let detailText = ''
   let TransactionIcon
   function getIcon() {
     if (transactionType === 'expense') {
       TransactionIcon = ExpenseIcon
+      detailText = details.map(detail => detail.name).join(', ')
     }
     if (transactionType === 'refund') {
       TransactionIcon = RefundIcon
+      detailText = details.map(detail => detail.name).join(', ')
     }
     if (transactionType === 'reimbursement') {
       TransactionIcon = ReimbursementIcon
+      //there will only be one person in the breakdown
+      detailText = `${details[0].name} reimbursed ${paidBy}`
     }
   }
   getIcon()
@@ -59,7 +66,7 @@ export default function TransactionListItem({
                   <Text size='4'>${amount}</Text>
                 </Box>
                 <Box>
-                  <Text size='2' color='gray'>{details}</Text>
+                  <Text size='2' color='gray'>{detailText}</Text>
                 </Box>
                 <Box align='end'>
                   <Text size='2' color='gray'>{formatDate(date)}</Text>

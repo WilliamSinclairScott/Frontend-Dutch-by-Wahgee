@@ -22,6 +22,8 @@ export default function DivvyDetail() {
                 date={transaction.date}
                 _id={transaction._id}
                 transactionName={transaction.transactionName}
+                details={transaction.breakdown}
+                paidBy={transaction.paidBy}
               />
             ))}
           </Table.Body>
