@@ -1,9 +1,7 @@
 import { Grid, Box, Table, IconButton, TextField } from '@radix-ui/themes'
 import { Cross1Icon } from '@radix-ui/react-icons'
-import { useState } from 'react'
 
-export default function ParticipantEdit({ participant }) {
-
+export default function ParticipantEdit({ participant, deleteParticipant, debounceChange, indexOf}) {
   return (
     <>
       <Table.Row>
@@ -18,12 +16,19 @@ export default function ParticipantEdit({ participant }) {
             <Box>
               <TextField.Root
                 size='3'
-                defaultValue={participant}
+                value={participant}
+                onChange={debounceChange}
+                id = {indexOf}
                 />
             </Box>
             <Box align='end'>
               <IconButton variant='ghost'>
-                <Cross1Icon height='18px' width='18px' />
+                <Cross1Icon 
+                height='18px' 
+                width='18px'
+                onClick={deleteParticipant}
+                id= {indexOf}
+                />
               </IconButton>
             </Box>
           </Grid>

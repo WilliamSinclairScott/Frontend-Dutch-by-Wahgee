@@ -9,5 +9,7 @@ export default function ParticipantAdd({ addParticipant }) {
     </TextField.Root>
     <Button onClick={addParticipant}>+</Button>
     </Flex>
+    
+    
   )
 }

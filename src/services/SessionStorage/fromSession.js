@@ -19,7 +19,7 @@ export function getUserId() {
   const userData = sessionStorage.getItem('dutch-user-object');
   if (userData) {
     const userObject = JSON.parse(userData);
-    return userObject._id; 
+    return userObject.data.userID 
   }
   return null; 
 }

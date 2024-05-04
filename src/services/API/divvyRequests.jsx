@@ -1,7 +1,8 @@
 import api from './apiConnect';
-
+import  { useNavigate } from 'react-router-dom';
+import { getDivvyDetails } from '../SessionStorage/fromSession';
 /**
- * @param DATA with the following properties:
+ * @param DATA object with the following properties:
  * @param {*} divvyName String
  * @param {*} owner _id of the user, $oid
  * @param {*} participants [...String]
@@ -9,6 +10,13 @@ import api from './apiConnect';
  */
 export async function createDivvy(DATA) {
   console.log("DATA", DATA)
+  if (!DATA){
+    console.error("No data provided to create divvy")
+  } else{
+    //await resonse from api
+    console.log("new Divvy made!")
+    return true
+  }
   return null
   try {
     const divvyData = {
