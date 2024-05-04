@@ -64,7 +64,7 @@ export async function updateDivvy(DATA) {
     console.error("No data provided to create divvy")
   } else{
     //await resonse from api
-    console.log("new Divvy made!")
+    console.log("Update Divvy made!")
     return true
   }
   try {
@@ -92,12 +92,23 @@ export async function deleteDivvy(divvyId) {
 }
 // Create a transaction within a divvy
 /**
- * 
- * @param {*} divvyId This is the ID of the divvy
- * @param {*} transactionData This is the data for the transaction
+ * @param {*} DATA object with the following properties:
+ * @param {*} transactionName Name of transaction
+ * @param {*} amount number
+ * @param {*} paidBy name of user
+ * @param {*} type expense or reimbursement or refund
  * @returns This returns the response data from the server
  */
-export async function createTransaction(divvyId, transactionData) {
+export async function createTransaction(DATA) {
+  console.log("DATA", DATA)
+  if (!DATA){
+    console.error("No data provided to create divvy")
+  } else{
+    //await resonse from api
+    console.log("new Transaction made!")
+    return true
+  }
+  return null
   try {
     const response = await api.post(`/divvy/${divvyId}/transactions`, transactionData);
     return response.data;
@@ -106,15 +117,25 @@ export async function createTransaction(divvyId, transactionData) {
     throw error;
   }
 }
-//update a transaction within a divvy
+// update a transaction within a divvy
 /**
- * 
- * @param {*} divvyId This is the ID of the divvy
- * @param {*} transactionId This is the ID of the transaction
- * @param {*} transactionData This is the data for the transaction
+ * @param {*} DATA object with the following properties:
+ * @param {*} transactionName Name of transaction
+ * @param {*} amount number
+ * @param {*} paidBy name of user
+ * @param {*} type expense or reimbursement or refund
  * @returns This returns the response data from the server
  */
-export async function updateTransaction(divvyId, transactionId, transactionData) {
+export async function updateTransaction(DATA) {
+  console.log("DATA", DATA)
+  if (!DATA){
+    console.error("No data provided to create divvy")
+  } else{
+    //await resonse from api
+    console.log("update Transaction made!")
+    return true
+  }
+  return null
   try {
     const response = await api.patch(`/divvy/${divvyId}/transactions/${transactionId}`, transactionData);
     return response.data;

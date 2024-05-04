@@ -51,7 +51,15 @@ export default function NavHeader({
         </Box>
         <Heading truncate size='4'>{title}</Heading>
         <Box width='96px' align='end'>
-          {editMode
+          {transactionId ?
+            saveButton({ action: () => {apiRequestOnSave(dataForapiRequestOnSave)}})
+            :
+          addTransaction
+            ? saveButton({ action: () => {apiRequestOnSave(dataForapiRequestOnSave)}})
+            :
+          
+          
+          editMode
             ? saveButton({ action: () => {apiRequestOnSave(dataForapiRequestOnSave)} })
             :
             <>

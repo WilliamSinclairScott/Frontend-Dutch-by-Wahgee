@@ -6,7 +6,7 @@ import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 import DivvyEdit from '../../components/DivvyEdit/DivvyEdit'
 import { getUserId, getDivvyDetails } from '../../services/SessionStorage/fromSession'
-import { updateDivvy } from '../../services/API/divvyRequests'
+import { updateDivvy,createTransaction } from '../../services/API/divvyRequests'
 import { useParams } from 'react-router-dom'
 
 export default function Divvy() {
@@ -54,8 +54,14 @@ export default function Divvy() {
       setAddTransaction={setAddTransaction}
       editMode={editMode}
       setEditMode={setEditMode}
-      apiRequestOnSave={updateDivvy}
-      dataForapiRequestOnSave={{
+      apiRequestOnSave={(addTransaction ? createTransaction : updateDivvy)}
+      dataForapiRequestOnSave={addTransaction ? {
+        transactionName: '',
+        type: 'expense',
+        amount: 0,
+        paidBy: '',
+        breakdown: []
+      }:{
         divvyName: divvyName,
         owner: getUserId(),
         participants: participants

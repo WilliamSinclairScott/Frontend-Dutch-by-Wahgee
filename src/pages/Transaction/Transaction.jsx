@@ -5,6 +5,7 @@ import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSel
 import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 //TODO Add turnery : Expense type reimbursement true show 'Paid to' table row, false show ParticipantSelect
 import NavHeader from '../../components/NavHeader/NavHeader';
+import { updateTransaction } from '../../services/API/divvyRequests';
 
 export default function Transaction( {newTransaction = false}) {
   const { divvyId } = useParams()
@@ -42,7 +43,19 @@ export default function Transaction( {newTransaction = false}) {
     <>
       { 
       !newTransaction&& 
-        <NavHeader title='Edit Transaction' 
+        <NavHeader 
+        title='Edit Transaction'
+        apiRequestOnSave={updateTransaction}
+        dataForapiRequestOnSave={
+          {
+            transactionId: transactionId,
+            transactionName: currentTransactionName,
+            type: currentTransactionType,
+            amount: currentCost,
+            paidBy: currentPaidBy,
+            breakdown: []
+          }
+        }
       />}
       <Flex direction='column' gap='4' mt='5' >
         <Table.Root size='3'>
