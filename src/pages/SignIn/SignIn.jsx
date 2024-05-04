@@ -11,7 +11,7 @@ export default function SignIn() {
   const handleAuth = async () => {
     try{
       await login(email, password)
-      navigate('/Divvys')
+      navigate('/divvys')
     }catch(error){
       //TODO: Add error handling with visibility for user
       console.error(error)
