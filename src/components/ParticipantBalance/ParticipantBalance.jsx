@@ -15,7 +15,7 @@ export default function ParticipantBalance({
     if (balance < 0) {
       balanceColor = 'red'
       for (let owe of owesWho){
-        owesWhoText += ` Owes ${owe.name} $${owe.amount},`
+        owesWhoText += ` owes ${owe.name} $${owe.amount},`
       }
       //remove last comma
       owesWhoText = owesWhoText.slice(0, -1)
