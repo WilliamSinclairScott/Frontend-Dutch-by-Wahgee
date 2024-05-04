@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
@@ -9,6 +10,8 @@ import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
 export default function Divvy() {
+    //TODO: Make this a secure function after merging is all working
+  //TODO: figure out possible transactionDelete from Transaction
   const { divvyId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
 
