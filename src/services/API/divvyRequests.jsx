@@ -1,18 +1,20 @@
 import api from './apiConnect';
 
 /**
- * 
+ * @param DATA with the following properties:
  * @param {*} divvyName String
  * @param {*} owner _id of the user, $oid
  * @param {*} participants [...String]
  * @returns Success message, or error message
  */
-export async function createDivvy(divvyName, owner, participants) {
+export async function createDivvy(DATA) {
+  console.log("DATA", DATA)
+  return null
   try {
     const divvyData = {
-      "divvyName" : divvyName,
-      "owner" : owner,
-      "participants" : participants
+      "divvyName" : DATA.divvyName,
+      "owner" : DATA.owner,
+      "participants" : DATA.participants
     }
 
     const response = await api.post('/divvy', divvyData);

@@ -1,8 +1,9 @@
 import { Grid, Box, Table, IconButton, TextField } from '@radix-ui/themes'
 import { Cross1Icon } from '@radix-ui/react-icons'
+import { useState } from 'react'
 
+export default function ParticipantEdit({ participant }) {
 
-export default function ParticipantEdit({ participantName }) {
   return (
     <>
       <Table.Row>
@@ -17,7 +18,7 @@ export default function ParticipantEdit({ participantName }) {
             <Box>
               <TextField.Root
                 size='3'
-                defaultValue={participantName}
+                defaultValue={participant}
                 />
             </Box>
             <Box align='end'>

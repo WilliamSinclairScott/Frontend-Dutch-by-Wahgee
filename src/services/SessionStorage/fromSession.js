@@ -6,7 +6,7 @@ export function getUserDisplayName() {
   const userData = sessionStorage.getItem('dutch-user-object');
   if (userData) {
     const userObject = JSON.parse(userData);
-    return userObject.displayName; 
+    return userObject.data.displayName
   }
   return Error('No user data found in session storage'); 
 }
