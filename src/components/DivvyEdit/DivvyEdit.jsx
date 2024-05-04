@@ -4,7 +4,8 @@ import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
 
 //TODO: Map over participants prop (array of objects or maybe array of strings) to create ParticipantEdit components on the page
 
-export default function DivvyEdit() {
+export default function DivvyEdit( participants ) {
+  console.log(participants)
   return (
     <>
       <Flex justify='between' align='center'>
