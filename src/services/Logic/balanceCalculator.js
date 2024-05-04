@@ -6,8 +6,6 @@
 export const calculateBalance = (divvy) => {
   const participants = divvy.participants;
   const transactions = divvy.transactions;
-  console.log('Participants',participants);
-  console.log('Transactions',transactions);
   let balance = participants.map(participant => {
     const name = participant.participantName;
     let owesTotal = participant.owesWho.map(owe => {
@@ -17,7 +15,6 @@ export const calculateBalance = (divvy) => {
       return transaction.paidBy === name ? transaction.amount : null} )
     const paidTotal = paid.reduce((acc, transaction) => acc + transaction.amount, 0);
     const balance = paidTotal - owesTotal;
-    console.log(`Balance for ${name} is ${balance} with ${paidTotal} total paid and ${owesTotal} total owes.`);
     // owes = [...{name: participant, amount: amount}]
     const owes = [];
     return { name, owes, balance };
@@ -32,7 +29,6 @@ export const calculateBalance = (divvy) => {
     while (owes < 0) {
       if (balance[j].balance > 0) {
         let amount = Math.min(-owes, balance[j].balance);
-        console.log(`${balance[i].name} owes ${balance[j].name} $${amount}`);
         balance[i].owes.push({ name: balance[j].name, amount });
         owes += amount;
       }
