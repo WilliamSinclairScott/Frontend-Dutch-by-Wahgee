@@ -29,10 +29,10 @@ export default function DivvyEdit({ divvyTitle, participants }) {
           <Text as="div" size="2">Participants</Text>
           <Table.Root>
             <Table.Body>
-              <ParticipantEdit participantName='Aris' />
-              <ParticipantEdit participantName='Josh' />
-              <ParticipantEdit participantName='Ian' />
-              <ParticipantEdit participantName='Will' />
+              { participants.map(participant => {
+                return <ParticipantEdit participantName={participant.name} key={participant.id} />
+              })
+              }
             </Table.Body>
           </Table.Root>
           <ParticipantAdd />
