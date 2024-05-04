@@ -1,8 +1,8 @@
 import { Grid, Box, IconButton, Separator, Text } from '@radix-ui/themes'
 import { ChevronRightIcon } from '@radix-ui/react-icons'
-import { createParticipantRembursementRedirect } from '../../services/Logic/buttonRerouteLogic'
+import { createParticipantReimbursementRedirect } from '../../services/Logic/buttonRerouteLogic'
 
-//TODO: Pass information through createParticipantRembursementRedirect function
+//TODO: Pass information through createParticipantReimbursementRedirect function
 
 export default function ParticipantBalance({ 
   participantName = 'InputParticipantName', 
@@ -46,7 +46,7 @@ export default function ParticipantBalance({
           {
             hideArrowButton &&
             <IconButton variant='ghost'>
-              <ChevronRightIcon height='36px' width='36px' onClick={createParticipantRembursementRedirect}/>
+              <ChevronRightIcon height='36px' width='36px' onClick={createParticipantReimbursementRedirect}/>
             </IconButton>
           }
         </Box>

@@ -1,8 +1,8 @@
 
-export function divvyDetialReroute() {
-  console.log(`This Button is working: divvyDetialReroute`)
+export function divvyDetailReroute() {
+  console.log(`This Button is working: divvyDetailReroute`)
 }
 
-export function createParticipantRembursementRedirect() {
-  console.log(`This Button is working: createParticipantRembursementRedirect`)
+export function createParticipantReimbursementRedirect() {
+  console.log(`This Button is working: createParticipantReimbursementRedirect`)
 }
