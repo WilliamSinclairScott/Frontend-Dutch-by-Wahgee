@@ -40,7 +40,7 @@ export default function ParticipantBalance({
 
         </Box>
         <Box align='end'>
-          <Text size='6' color={balanceColor}>{balance}</Text>
+          <Text size='6' color={balanceColor}>{`${balance < 0 ? '-' : ''}$${Math.abs(balance)}`}</Text>
         </Box>
         <Box align='end'>
           {
