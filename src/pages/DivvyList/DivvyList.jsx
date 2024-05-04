@@ -40,7 +40,7 @@ export default function DivvyList() {
 
   return (
     <>
-      <NavHeader title='Dutch' 
+      <NavHeader title={editMode ? 'New Divvy' : 'Dutch'} 
       editMode={editMode}
       setEditMode={setEditMode}
       apiRequestOnSave={createDivvy}

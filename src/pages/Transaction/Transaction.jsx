@@ -6,14 +6,22 @@ import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 //TODO Add turnery : Expense type reimbursement true show 'Paid to' table row, false show ParticipantSelect
 import NavHeader from '../../components/NavHeader/NavHeader';
 
-export default function Transaction() {
+export default function Transaction( {newTransaction = false}) {
   const { divvyId } = useParams()
   const { transactionId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
 
-  const transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
+  let transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
   const divvyparticipants = divvyDetails?.participants
 
+  if (!transaction) {
+    transaction = {
+      transactionName: '',
+      type: 'expense',
+      amount: 0,
+      breakdown: [],
+    }
+  }
   //SAVE TRANSACITON FUNCTIONz
   const [currentTransactionName, setCurrentTransactionName] = useState(transaction.transactionName)
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
@@ -32,7 +40,10 @@ export default function Transaction() {
 
   return (
     <>
-      <NavHeader title='Edit Transaction' />
+      { 
+      !newTransaction&& 
+        <NavHeader title='Edit Transaction' 
+      />}
       <Flex direction='column' gap='4' mt='5' >
         <Table.Root size='3'>
           <Table.Body >
