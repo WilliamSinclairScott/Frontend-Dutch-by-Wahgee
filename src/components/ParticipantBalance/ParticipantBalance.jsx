@@ -15,7 +15,7 @@ export default function ParticipantBalance({
     if (balance < 0) {
       balanceColor = 'red'
       for (let owe of owesWho){
-        owesWhoText += ` Owes ${owe.name} $${owe.amount},`
+        owesWhoText += ` owes ${owe.name} $${owe.amount},`
       }
       //remove last comma
       owesWhoText = owesWhoText.slice(0, -1)
@@ -40,7 +40,10 @@ export default function ParticipantBalance({
 
         </Box>
         <Box align='end'>
-          <Text size='6' color={balanceColor}>{balance}</Text>
+        <Text size='6' color={balanceColor}>
+  {`${balance < 0 ? '-' : ''}$${Math.abs(balance).toFixed(2)}`}
+</Text>
+
         </Box>
         <Box align='end'>
           {
