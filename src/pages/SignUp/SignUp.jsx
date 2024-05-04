@@ -1,16 +1,23 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Flex, Text, Button, TextField } from '@radix-ui/themes'
 import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
 import { signup } from "../../services/API/userRequests"
 
 export default function SignUp() {
+  const navigate = useNavigate()
   const [displayName, setDisplayName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleCreateAccount = () => {
-    signup(email, password, displayName)
+  const handleCreateAccount = async () => {
+    try {
+      await signup(email, password, displayName)
+      navigate('/')
+    } catch (error) {
+      //TODO: Add error handling with visibility for user
+      console.error(error)
+    }
   }
 
   return (

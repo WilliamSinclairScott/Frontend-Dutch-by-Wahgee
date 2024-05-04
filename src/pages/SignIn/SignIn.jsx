@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate} from "react-router-dom"
 import { Flex, TextField, Button, Text } from '@radix-ui/themes'
 import WelcomeHeader from "../../components/WelcomeHeader/WelcomeHeader"
 import { login } from '../../services/API/userRequests'
@@ -7,9 +7,15 @@ import { login } from '../../services/API/userRequests'
 export default function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const handleAuth = () => {
-    login(email, password)
+  const navigate = useNavigate()
+  const handleAuth = async () => {
+    try{
+      await login(email, password)
+      navigate('/divvys')
+    }catch(error){
+      //TODO: Add error handling with visibility for user
+      console.error(error)
+    }
   }
 
   return (
