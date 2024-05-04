@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Flex, Table, } from '@radix-ui/themes'
+import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyListItem from '../../components/DivvyListItem/DivvyListItem'
 import { AddButton } from '../../components/AddButton/AddButton'
 import { getDivvys } from '../../services/SessionStorage/fromSession'
@@ -13,6 +14,7 @@ export default function DivvyList() {
   }
   return (
     <>
+      <NavHeader title='Dutch' />
       <Flex direction='column' gap='4' mt='5' >
         { !makeNewDivvy &&
         <>
