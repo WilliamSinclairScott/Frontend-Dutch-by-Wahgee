@@ -1,7 +1,7 @@
 import { Flex, Table } from '@radix-ui/themes'
 import TransactionListItem from '../TransactionListItem/TransactionListItem'
 import { AddButton } from '../AddButton/AddButton'
-import { getDivvyDetails } from '../../services/API/apiHelpers'
+import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import { useParams } from 'react-router-dom'
 import { divvyDetialReroute } from '../../services/Logic/buttonRerouteLogic'
 export default function DivvyDetail() {

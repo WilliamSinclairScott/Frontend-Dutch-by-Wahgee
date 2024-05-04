@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
-import { getDivvyDetails } from '../../services/API/apiHelpers'
+import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 
 //TODO Add turnery : Expense type reimbursement true show 'Paid to' table row, false show ParticipantSelect
 
@@ -107,7 +107,7 @@ export default function Transaction() {
             }
           </Table.Body>
         </Table.Root>
-        {currentTransactionType !== 'reimbursement' &&
+        {currentTransactionType === 'reimbursement' &&
           <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
         }
       </Flex >

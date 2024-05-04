@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Flex, Table, } from '@radix-ui/themes'
 import DivvyListItem from '../../components/DivvyListItem/DivvyListItem'
 import { AddButton } from '../../components/AddButton/AddButton'
-import { getDivvys } from '../../services/API/apiHelpers'
+import { getDivvys } from '../../services/SessionStorage/fromSession'
 import DivvyEdit from '../../components/DivvyEdit/DivvyEdit'
 export default function DivvyList() {
   const [makeNewDivvy, setMakeNewDivvy] = useState(false)
