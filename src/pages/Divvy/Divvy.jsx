@@ -2,7 +2,7 @@ import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
-import { getDivvyDetails } from '../../services/API/apiHelpers'
+import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import { useParams } from 'react-router-dom'
 
 

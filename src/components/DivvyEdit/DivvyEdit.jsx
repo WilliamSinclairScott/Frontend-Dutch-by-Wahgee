@@ -1,10 +1,10 @@
 import { Flex, Table, Box, Button, TextField, Text } from '@radix-ui/themes'
 import ParticipantEdit from '../ParticipantEdit/ParticipantEdit'
 import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
-import { getUserDisplayName } from '../../services/SessionStorage/fromSession'
 //TODO: Map over participants prop (array of objects or maybe array of strings) to create ParticipantEdit components on the page
 
 export default function DivvyEdit( participants ) {
+  
   console.log(participants)
   return (
     <>
