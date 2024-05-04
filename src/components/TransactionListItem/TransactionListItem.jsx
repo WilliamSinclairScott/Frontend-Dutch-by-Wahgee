@@ -46,7 +46,7 @@ export default function TransactionListItem({
     if (!date) {
       return ''
     }
-    return date.toLocaleDateString("en-US", { month: "long", day: "2-digit" })
+    return new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
   formatDate(date)
   return (
