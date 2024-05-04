@@ -2,37 +2,85 @@ import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
-import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
+import { getUserId, getDivvyDetails } from '../../services/SessionStorage/fromSession'
+import { updateDivvy } from '../../services/API/divvyRequests'
 import { useParams } from 'react-router-dom'
-
+import { useState } from 'react'
 
 export default function Divvy() {
   const { divvyId } = useParams()
-  console.log(divvyId);
   const divvyDetails = getDivvyDetails(divvyId)
-  const divvyTitle = divvyDetails.divvyName
+
+  const [editMode, setEditMode] = useState(false)
+
+
+  const [divvyName, setDivvyName] = useState(divvyDetails.divvyName)
+  //just participant names
+  const [participants, setParticipants] = useState(divvyDetails.participants.map(participant => participant.name))
+
+  //TODO: Stop deletion if participant has transactions or owesWho
+  const deleteParticipant = (e) => {
+    const updated = [...participants]
+    if (e.target.id) {
+      console.log('delete', updated[e.target.id])
+      updated.splice(e.target.id, 1)
+      setParticipants(updated)
+    }
+  }
+
+  const debounceChange = (e) => {
+    let delay
+    clearTimeout(delay)
+    delay = setTimeout(() => {
+      console.log('debounced', e.target.value, e.target.id)
+      //remove the old value and replace with the new value
+      const updated = [...participants]
+      updated[e.target.id] = e.target.value
+      setParticipants(updated)
+    }, 1500)
+  }
+
   return (
     <>
-      <NavHeader title={divvyTitle} editMode='true' />
+      <NavHeader title='Dutch' 
+      editMode={editMode}
+      setEditMode={setEditMode}
+      apiRequestOnSave={updateDivvy}
+      dataForapiRequestOnSave={{
+        divvyName: divvyName,
+        owner: getUserId(),
+        participants: participants
+      }}
+      />
         <Flex direction='column'>
-          <Tabs.Root defaultValue='details'>
-            <Tabs.List justify='center'>
-              <Tabs.Trigger value='details'>
-                <Text size='5'>Details</Text>
-              </Tabs.Trigger>
-              <Tabs.Trigger value='balances'>
-                <Text size='5'>Balances</Text>
-              </Tabs.Trigger>
-            </Tabs.List>
-            <Box pt='2'>
-              <Tabs.Content value='details'>
-                <DivvyDetail />
-              </Tabs.Content>
-              <Tabs.Content value='balances'>
-                <DivvyBalances />
-              </Tabs.Content>
-            </Box>
-          </Tabs.Root>
+          { !editMode &&
+            <Tabs.Root defaultValue='details'>
+              <Tabs.List justify='center'>
+                <Tabs.Trigger value='details'>
+                  <Text size='5'>Details</Text>
+                </Tabs.Trigger>
+                <Tabs.Trigger value='balances'>
+                  <Text size='5'>Balances</Text>
+                </Tabs.Trigger>
+              </Tabs.List>
+              <Box pt='2'>
+                <Tabs.Content value='details'>
+                  <DivvyDetail
+                    divvyName={divvyName}
+                    setDivvyName={setDivvyName}
+                    participants={participants}
+                    setParticipants={setParticipants}
+                    isUpdate={false}
+                    deleteParticipant={deleteParticipant}
+                    debounceChange={debounceChange}
+                    />
+                </Tabs.Content>
+                <Tabs.Content value='balances'>
+                  <DivvyBalances />
+                </Tabs.Content>
+              </Box>
+            </Tabs.Root>
+          }
         </Flex >
       </>
       )

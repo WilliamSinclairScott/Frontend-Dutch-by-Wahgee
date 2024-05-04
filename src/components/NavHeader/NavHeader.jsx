@@ -4,7 +4,7 @@ import { NavLink, useParams, useLocation } from 'react-router-dom'
 
 //TODO: Add Heading resizing CSS, etc to handle long titles (ideally we wrap and change font size insead of truncating)
 
-export default function NavHeader({ title, editMode, setEditMode, apiRequestOnSave, dataForapiRequestOnSave}) {
+export default function NavHeader({ title, editMode }) {
   const currentPath = useLocation().pathname
   const divvyId = useParams().divvyId
   const onDivvyPage = divvyId ? true : false
@@ -29,7 +29,7 @@ export default function NavHeader({ title, editMode, setEditMode, apiRequestOnSa
       <Flex as="header" align='center' justify='between' gap="3" p='1' mb='6' >
         <Box width='96px'>
           {editMode
-            ? cancelButton({ action: () => {setEditMode(!editMode)}})
+            ? cancelButton({ action: () => console.log('Cancel') })
             :
             <NavLink to="/divvys">
               <IconButton size='3' variant="ghost" aria-label="Home">
@@ -41,7 +41,7 @@ export default function NavHeader({ title, editMode, setEditMode, apiRequestOnSa
         <Heading truncate size='4'>{title}</Heading>
         <Box width='96px' align='end'>
           {editMode
-            ? saveButton({ action: () => {apiRequestOnSave(dataForapiRequestOnSave)} })
+            ? saveButton({ action: () => console.log('Save') })
             :
             <>
               {onDivvyPage
