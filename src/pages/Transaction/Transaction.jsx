@@ -14,6 +14,7 @@ export default function Transaction() {
   const transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
   const divvyparticipants = divvyDetails?.participants
 
+  //SAVE TRANSACITON FUNCTIONz
   const [currentTransactionName, setCurrentTransactionName] = useState(transaction.transactionName)
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
   const [currentCost, setCurrentCost] = useState(transaction.amount);

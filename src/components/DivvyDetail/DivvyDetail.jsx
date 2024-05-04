@@ -3,7 +3,6 @@ import TransactionListItem from '../TransactionListItem/TransactionListItem'
 import { AddButton } from '../AddButton/AddButton'
 import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import { useParams } from 'react-router-dom'
-import { divvyDetailReroute } from '../../services/Logic/buttonRerouteLogic'
 export default function DivvyDetail() {
   const { divvyId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
@@ -29,7 +28,7 @@ export default function DivvyDetail() {
           </Table.Body>
         </Table.Root>
       </Flex>
-      <AddButton action={divvyDetailReroute} />
+      <AddButton action={()=>console.log(`newTransaction`)} />
     </>
   )
 }

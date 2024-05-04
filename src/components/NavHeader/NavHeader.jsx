@@ -4,7 +4,7 @@ import { NavLink, useParams, useLocation } from 'react-router-dom'
 
 //TODO: Add Heading resizing CSS, etc to handle long titles (ideally we wrap and change font size insead of truncating)
 
-export default function NavHeader({ title, editMode }) {
+export default function NavHeader({ title, editMode, setEditMode, apiRequestOnSave, dataForapiRequestOnSave}) {
   const currentPath = useLocation().pathname
   const divvyId = useParams().divvyId
   const onDivvyPage = divvyId ? true : false
@@ -29,7 +29,7 @@ export default function NavHeader({ title, editMode }) {
       <Flex as="header" align='center' justify='between' gap="3" p='1' mb='6' >
         <Box width='96px'>
           {editMode
-            ? cancelButton({ action: () => console.log('Cancel') })
+            ? cancelButton({ action: () => {setEditMode(!editMode)}})
             :
             <NavLink to="/divvys">
               <IconButton size='3' variant="ghost" aria-label="Home">
@@ -41,7 +41,7 @@ export default function NavHeader({ title, editMode }) {
         <Heading truncate size='4'>{title}</Heading>
         <Box width='96px' align='end'>
           {editMode
-            ? saveButton({ action: () => console.log('Save') })
+            ? saveButton({ action: () => {apiRequestOnSave(dataForapiRequestOnSave)} })
             :
             <>
               {onDivvyPage
@@ -58,7 +58,9 @@ export default function NavHeader({ title, editMode }) {
                   </IconButton>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content>
-                  <DropdownMenu.Item>Edit this Divvy</DropdownMenu.Item>
+                  <DropdownMenu.Item
+                    onClick={() => {setEditMode(!editMode)}}>
+                    Edit this Divvy</DropdownMenu.Item>
                   <DropdownMenu.Item>Log Out</DropdownMenu.Item>
                 </DropdownMenu.Content>
               </DropdownMenu.Root>
