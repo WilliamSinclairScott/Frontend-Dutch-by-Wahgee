@@ -9,17 +9,17 @@ export default function Transaction() {
   const { divvyId } = useParams()
   const { transactionId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
-  console.log(divvyDetails);
+
   const transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
   const divvyparticipants = divvyDetails?.participants
-  console.log(transaction);
+
   const [currentTransactionName, setCurrentTransactionName] = useState(transaction.transactionName)
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
   const [currentCost, setCurrentCost] = useState(transaction.amount);
   const [currentPaidBy, setCurrentPaidBy] = useState(transaction.paidBy)
 
-  const handleTransactionNameChange = (e) => { setCurrentTransactionName(e.target.value) }
-  const handleTransactionTypeChange = (e) => { setCurrentTransactionType(e.target.value) }
+  const handleTransactionNameChange = (e) => { setCurrentTransactionName(e) }
+  const handleTransactionTypeChange = (e) => { setCurrentTransactionType(e) }
   const handleCostChange = (e) => { setCurrentCost(e.target.value) }
   const handlePaidByChange = (e) => { setCurrentPaidBy(e.target.value) }
 
@@ -56,7 +56,7 @@ export default function Transaction() {
                 <Select.Root
                   size='3'
                   defaultValue={currentTransactionType}
-                  onChange={handleTransactionTypeChange}
+                  onValueChange={handleTransactionTypeChange}
                 >
                   <Select.Trigger variant='ghost' />
                   <Select.Content>
@@ -102,38 +102,41 @@ export default function Transaction() {
                 </Select.Root>
               </Table.Cell>
             </Table.Row>
-            {currentTransactionType === 'reimbursement'
-              ? paidToSnippet(divvyparticipants)
-              : null
+            {
+              currentTransactionType === 'reimbursement' &&
+                <Table.Row align='center'>
+                  <Table.Cell>Paid to</Table.Cell>
+                  <Table.Cell justify='end'>
+                    <Select.Root
+                      size='3'
+                    >
+                      <Select.Trigger variant='ghost' />
+                      <Select.Content>
+                        {divvyparticipants.map(participant => {
+                          return <Select.Item key={participant._id} value={participant.participantName}>
+                            {participant.participantName}
+                          </Select.Item>
+                        })}
+                      </Select.Content>
+                    </Select.Root>
+                  </Table.Cell>
+                </Table.Row>
+            //TODO: Add submit button for reimbursement
             }
           </Table.Body>
         </Table.Root>
-        {currentTransactionType !== 'reimbursement' &&
-          <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
+        {
+          currentTransactionType === 'expense' &&
+            <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
+          //TODO: Add submit button for expense
+        }
+        {
+          //TODO: Add the plus sign infront of the dollar sign
+          currentTransactionType === 'refund' &&
+            <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
+          //TODO: Add submit button for refund
         }
       </Flex >
     </>
-  )
-}
-
-function paidToSnippet(divvyparticipants) {
-  return (
-    <Table.Row align='center'>
-      <Table.Cell>Paid to</Table.Cell>
-      <Table.Cell justify='end'>
-        <Select.Root
-          size='3'
-        >
-          <Select.Trigger variant='ghost' />
-          <Select.Content>
-            {divvyparticipants.map(participant => {
-              return <Select.Item key={participant._id} value={participant.participantName}>
-                {participant.participantName}
-              </Select.Item>
-            })}
-          </Select.Content>
-        </Select.Root>
-      </Table.Cell>
-    </Table.Row>
   )
 }
