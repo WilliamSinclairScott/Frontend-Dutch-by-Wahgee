@@ -19,7 +19,7 @@ export default function TransactionListItem({
   amount,
   paidBy,
   details,
-  date = new Date(),
+  date,
   _id
 }) {
   let detailText = ''
