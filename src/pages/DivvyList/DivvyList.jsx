@@ -6,8 +6,12 @@ import DivvyListItem from '../../components/DivvyListItem/DivvyListItem'
 import { AddButton } from '../../components/AddButton/AddButton'
 import { getDivvys } from '../../services/SessionStorage/fromSession'
 import DivvyEdit from '../../components/DivvyEdit/DivvyEdit'
+
+
 export default function DivvyList() {
-  const [makeNewDivvy, setMakeNewDivvy] = useState(false)
+  //TODO: Make this a servuce function after merging is all working
+  const userDisplayName = getUserDisplayName()
+  console.log(userDisplayName)
   const divvys = getDivvys()
   const [editMode, setEditMode] = useState(false)
   const switchEditMode = () => setEditMode(!editMode)
@@ -29,7 +33,7 @@ export default function DivvyList() {
         </Table.Root>
         {
           editMode &&
-          <DivvyEdit />
+          <DivvyEdit participants={[userDisplayName]}/>
         }
       </Flex>
       <AddButton action={switchEditMode} />

@@ -4,10 +4,8 @@ import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
 import { getUserDisplayName } from '../../services/SessionStorage/fromSession'
 //TODO: Map over participants prop (array of objects or maybe array of strings) to create ParticipantEdit components on the page
 
-export default function DivvyEdit() {
-  //get userName for session storage
-  const user = getUserDisplayName()
-  console.log(user)
+export default function DivvyEdit( participants ) {
+  console.log(participants)
   return (
     <>
       <Flex justify='between' align='center'>
@@ -31,7 +29,10 @@ export default function DivvyEdit() {
           <Text as="div" size="2">Participants</Text>
           <Table.Root>
             <Table.Body>
-              <ParticipantEdit participantName={user} />
+              { participants.map(participant => {
+                return <ParticipantEdit participantName={participant.name} key={participant.id} />
+              })
+              }
             </Table.Body>
           </Table.Root>
           <ParticipantAdd />
