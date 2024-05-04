@@ -22,7 +22,7 @@ export default function DivvyEdit( participants ) {
             type='text'
             size='3'
             mt='3'
-            defaultValue={user}
+            defaultValue={'example user'}
           />
         </label>
         <Box mt='4'>
