@@ -52,12 +52,21 @@ export async function getDivvyById(divvyId) {
 }
 // Update a specific divvy by ID
 /**
- * 
- * @param {*} divvyId This is the ID of the divvy
- * @param {*} divvyData This is the data for the divvy
- * @returns This returns the response data from the server
+ * @param DATA object with the following properties:
+ * @param {*} divvyName String
+ * @param {*} owner _id of the user, $oid
+ * @param {*} participants [...String]
+ * @returns Success message, or error message
  */
-export async function updateDivvy(divvyId, divvyData) {
+export async function updateDivvy(DATA) {
+  console.log("DATA", DATA)
+  if (!DATA){
+    console.error("No data provided to create divvy")
+  } else{
+    //await resonse from api
+    console.log("new Divvy made!")
+    return true
+  }
   try {
     const response = await api.patch(`/divvy/${divvyId}`, divvyData);
     return response.data;
