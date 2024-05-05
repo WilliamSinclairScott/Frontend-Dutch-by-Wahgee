@@ -1,10 +1,105 @@
+/* .dark-theme {
+  --color-background: #111111;
+  --gray-1: #001617;
+  --gray-2: #001e1f;
+  --gray-3: #00282a;
+  --gray-4: #003133;
+  --gray-5: #00393b;
+  --gray-6: #004446;
+  --gray-7: #005458;
+  --gray-8: #007074;
+  --gray-9: #008085;
+  --gray-10: #008f94;
+  --gray-11: #4dc8cd;
+  --gray-12: #dbf3f4;
+  --gray-a1: #00c8ec07;
+  --gray-a2: #00eeff0f;
+  --gray-a3: #00ebfe1b;
+  --gray-a4: #00edfb25;
+  --gray-a5: #00f4ff2d;
+  --gray-a6: #00f6ff39;
+  --gray-a7: #00effd4d;
+  --gray-a8: #00f4fd6b;
+  --gray-a9: #00f3fd7d;
+  --gray-a10: #00f5fe8d;
+  --gray-a11: #5cf8feca;
+  --gray-a12: #e4fdfef4;
+  --gray-contrast: #FFFFFF;
+  --gray-surface: rgba(0, 0, 0, 0.05);
+  --gray-indicator: #008085;
+  --gray-track: #008085;
+
+  --blue-1: #07121d;
+  --blue-2: #0c1a27;
+  --blue-3: #00284a;
+  --blue-4: #003267;
+  --blue-5: #003f7b;
+  --blue-6: #004e8d;
+  --blue-7: #005ea5;
+  --blue-8: #0072c6;
+  --blue-9: #0766ad;
+  --blue-10: #00579d;
+  --blue-11: #65b9ff;
+  --blue-12: #c5e5ff;
+  --blue-a1: #0025fd0d;
+  --blue-a2: #0071fb18;
+  --blue-a3: #0070fc3e;
+  --blue-a4: #006cfd5d;
+  --blue-a5: #0078ff72;
+  --blue-a6: #0086ff85;
+  --blue-a7: #008dff9f;
+  --blue-a8: #0091ffc2;
+  --blue-a9: #0292fea8;
+  --blue-a10: #0088ff96;
+  --blue-a11: #65b9ff;
+  --blue-a12: #c5e5ff;
+  --blue-contrast: #FFFFFF;
+  --blue-surface: rgba(8, 35, 61, 0.5);
+  --blue-indicator: #0766ad;
+  --blue-track: #0766ad;
+}
+
+@media (color-gamut: p3) {
+  .dark-theme {
+    --gray-1: oklch(17.8% 0.039 198.9);
+    --gray-2: oklch(21.1% 0.04 198.9);
+    --gray-3: oklch(25.1% 0.043 198.9);
+    --gray-4: oklch(28.1% 0.053 198.9);
+    --gray-5: oklch(31.1% 0.056 198.9);
+    --gray-6: oklch(34.7% 0.065 198.9);
+    --gray-7: oklch(39.9% 0.084 198.9);
+    --gray-8: oklch(48.8% 0.098 198.9);
+    --gray-9: oklch(53.3% 0.161 198.9);
+    --gray-10: oklch(57.9% 0.161 198.9);
+    --gray-11: oklch(76.6% 0.107 198.9);
+    --gray-12: oklch(94.7% 0.026 198.9);
+    --blue-1: oklch(17.8% 0.029 249.4);
+    --blue-2: oklch(21.1% 0.034 249.4);
+    --blue-3: oklch(27.3% 0.075 249.4);
+    --blue-4: oklch(31.7% 0.112 249.4);
+    --blue-5: oklch(36.5% 0.122 249.4);
+    --blue-6: oklch(41.6% 0.127 249.4);
+    --blue-7: oklch(47.5% 0.137 249.4);
+    --blue-8: oklch(54.2% 0.157 249.4);
+    --blue-9: oklch(50.1% 0.137 249.4);
+    --blue-10: oklch(45.1% 0.137 249.4);
+    --blue-11: oklch(76.9% 0.151 249.4);
+    --blue-12: oklch(90.9% 0.058 249.4);
+  }
+} */
+
+
 body {
   font-family: 'Noto Sans Display', sans-serif;
   margin: 0;
 }
 
+.dark-theme button {
+  cursor: pointer;
+}
+
 .background {
-  background: linear-gradient(180deg, #002A44, #0C1A23);
+  background: linear-gradient(180deg, #000000, #00355e);
 }
 
 body main {

@@ -13,6 +13,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Theme accentColor='cyan' appearance='dark' className='background'>
         <App />
       </Theme>
+      {/* <Theme className='dark-theme background'>
+        <App />
+      </Theme> */}
     </Router>
   </React.StrictMode>,
 )
