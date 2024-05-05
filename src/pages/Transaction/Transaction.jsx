@@ -7,7 +7,22 @@ import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import NavHeader from '../../components/NavHeader/NavHeader';
 import { updateTransaction } from '../../services/API/divvyRequests';
 
-export default function Transaction( {newTransaction = false}) {
+export default function Transaction( {
+  newTransaction,
+  transactionName,
+  setTransactionName,
+  transactionType,
+  setTransactionType,
+  transactionAmount,
+  setTransactionAmount,
+  transactionPaidBy,
+  setTransactionPaidBy,
+  transactionBreakdown,
+  setTransactionBreakdown,
+  participants,
+  setParticipants,
+  
+} ) {
   const { divvyId } = useParams()
   const { transactionId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
@@ -17,10 +32,11 @@ export default function Transaction( {newTransaction = false}) {
 
   if (!transaction) {
     transaction = {
-      transactionName: '',
-      type: 'expense',
-      amount: 0,
-      breakdown: [],
+      transactionName: transactionName,
+      type: transactionType,
+      amount: transactionAmount,
+      paidBy: transactionPaidBy,
+      breakdown: trans,
     }
   }
   //SAVE TRANSACITON FUNCTIONz
@@ -28,7 +44,20 @@ export default function Transaction( {newTransaction = false}) {
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
   const [currentCost, setCurrentCost] = useState(transaction.amount);
   const [currentPaidBy, setCurrentPaidBy] = useState(transaction.paidBy)
-
+  const startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
+  const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
+  const [percentage, setPercentage] = useState(1 / activeParticipants.length)
+  const handleActiveParticipantsChange = (e) => {
+    const participantName = e.target.parentElement.nextSibling.textContent.trim();
+    console.log(participantName);
+    if (activeParticipants.includes(participantName)) {
+      activeParticipants.splice(activeParticipants.indexOf(participantName), 1)
+    } else {
+      activeParticipants.push(participantName)
+    }
+    console.log(activeParticipants);
+    setPercentage(1 / activeParticipants.length)
+  }
   const handleTransactionNameChange = (e) => { setCurrentTransactionName(e.target.value) }
   const handleTransactionTypeChange = (e) => { 
     console.log(e)
@@ -156,7 +185,15 @@ export default function Transaction( {newTransaction = false}) {
         </Table.Root>
         {
           currentTransactionType === 'expense' &&
-            <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
+            <ParticipantSelect
+            transaction={transaction}
+            divvyparticipants={divvyparticipants}
+            currentCost={currentCost}
+            handleActiveParticipantsChange = {handleActiveParticipantsChange}
+            portion={currentCost*percentage}
+            activeParticipants={activeParticipants}
+            
+            />
           //TODO: Add submit button for expense
         }
         {

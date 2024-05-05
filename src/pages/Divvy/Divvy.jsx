@@ -5,7 +5,7 @@ import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 import DivvyEdit from '../../components/DivvyEdit/DivvyEdit'
-import { getUserId, getDivvyDetails } from '../../services/SessionStorage/fromSession'
+import { getUserId, getDivvyDetails, getUserDisplayName } from '../../services/SessionStorage/fromSession'
 import { updateDivvy,createTransaction } from '../../services/API/divvyRequests'
 import { useParams } from 'react-router-dom'
 
@@ -21,7 +21,11 @@ export default function Divvy() {
   const [divvyName, setDivvyName] = useState(divvyDetails.divvyName)
   //Actual participant object
   const [participants, setParticipants] = useState(divvyDetails.participants)
-
+  const [transactionName, setTransactionName] = useState('')
+  const [transactionType, setTransactionType] = useState('expense')
+  const [transactionAmount, setTransactionAmount] = useState(0)
+  const [transactionPaidBy, setTransactionPaidBy] = useState()
+  const [transactionBreakdown, setTransactionBreakdown] = useState([])
   
   const deleteParticipant = (e) => {
     //TODO: Stop deletion if participant has transactions or owesWho
@@ -56,12 +60,16 @@ export default function Divvy() {
       setEditMode={setEditMode}
       apiRequestOnSave={(addTransaction ? createTransaction : updateDivvy)}
       dataForapiRequestOnSave={addTransaction ? {
-        transactionName: '',
-        type: 'expense',
-        amount: 0,
-        paidBy: '',
-        breakdown: []
+        //TODO: Add createTransaction data
+        divvyId: divvyId,
+        transactionName: transactionName,
+        type: transactionType,
+        amount: transactionAmount,
+        paidBy: transactionPaidBy,
+        breakdown: transactionBreakdown
       }:{
+        //TODO: Add update divvy data
+        divvyId: divvyId,
         divvyName: divvyName,
         owner: getUserId(),
         participants: participants
@@ -115,7 +123,21 @@ export default function Divvy() {
         }
         {  
         addTransaction &&
-          <Transaction newTransaction={addTransaction}/>
+          <Transaction
+          newTransaction={addTransaction}
+          transactionName={transactionName}
+          setTransactionName={setTransactionName}
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
+          transactionAmount={transactionAmount}
+          setTransactionAmount={setTransactionAmount}
+          transactionPaidBy={transactionPaidBy}
+          setTransactionPaidBy={setTransactionPaidBy}
+          transactionBreakdown={transactionBreakdown}
+          setTransactionBreakdown={setTransactionBreakdown}
+          participants={participants}
+          setParticipants={setParticipants}
+          />
         }
       </>
       )
