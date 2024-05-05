@@ -21,10 +21,11 @@ export default function Divvy() {
   const [divvyName, setDivvyName] = useState(divvyDetails.divvyName)
   //Actual participant object
   const [participants, setParticipants] = useState(divvyDetails.participants)
+  //Needs to be passed to Transaction to be edited and hoiseted back for createTransaction
   const [transactionName, setTransactionName] = useState('')
   const [transactionType, setTransactionType] = useState('expense')
   const [transactionAmount, setTransactionAmount] = useState(0)
-  const [transactionPaidBy, setTransactionPaidBy] = useState()
+  const [transactionPaidBy, setTransactionPaidBy] = useState(getUserDisplayName)
   const [transactionBreakdown, setTransactionBreakdown] = useState([])
   
   const deleteParticipant = (e) => {
@@ -37,7 +38,7 @@ export default function Divvy() {
       setParticipants(updated)
     }
   }
-
+//
   const debounceChange = (e) => {
     let delay
     clearTimeout(delay)

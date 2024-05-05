@@ -5,13 +5,21 @@ import ParticipantSelectRow from '../ParticipantSelectRow/ParticipantSelectRow'
 //TODO: useState to recalculate percentage on checkbox change
 
 export default function ParticipantSelect({ 
-  divvyparticipants, 
-  activeParticipants, 
-  setActiveParticipants,
-  handleActiveParticipantsChange,
-  portion
-
+  divvyparticipants, setDivvyParticipants,
+  activeParticipants, setActiveParticipants,
+  handleActiveParticipantsChange, portion
 }) {
+  const participantNames = divvyparticipants.map(participant => participant.participantName ? participant.participantName : participant)
+  console.log('divvyparticipants', divvyparticipants)
+  console.log('participantNames', participantNames)
+  const addParticipant = (e) => {
+    //from the button to the input of the textfield
+    const input = e.target.previousSibling.children[0].value
+    const updated = [...divvyparticipants, input]
+    e.target.previousSibling.children[0].value = ''
+    setDivvyParticipants(updated)
+  }
+
   return (
     <>
       <Flex direction='column' mt='9'>
@@ -28,7 +36,7 @@ export default function ParticipantSelect({
             ))}
           </Table.Body>
         </Table.Root>
-        <ParticipantAdd />
+        <ParticipantAdd addParticipant={addParticipant}/>
       </Flex>
     </>
   )

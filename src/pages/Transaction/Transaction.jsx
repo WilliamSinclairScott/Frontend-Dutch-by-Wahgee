@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
@@ -23,30 +23,44 @@ export default function Transaction( {
   setParticipants,
   
 } ) {
+
+  if(newTransaction){
+    //Im going to need the following back
+    // transactionName,
+    // transactionType,
+    // transactionAmount,
+    // transactionPaidBy,
+    // transactionBreakdown,
+
+  }
+
+
   const { divvyId } = useParams()
   const { transactionId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
 
   let transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
-  const divvyparticipants = divvyDetails?.participants
+  const [divvyparticipants,setDivvyParticipants]= useState(divvyDetails?.participants)
 
-  if (!transaction) {
+  if (newTransaction) {
     transaction = {
       transactionName: transactionName,
       type: transactionType,
       amount: transactionAmount,
       paidBy: transactionPaidBy,
-      breakdown: trans,
+      breakdown: transactionBreakdown,
     }
   }
-  //SAVE TRANSACITON FUNCTIONz
+  //Initialize Input states
   const [currentTransactionName, setCurrentTransactionName] = useState(transaction.transactionName)
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
   const [currentCost, setCurrentCost] = useState(transaction.amount);
   const [currentPaidBy, setCurrentPaidBy] = useState(transaction.paidBy)
+
   const startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
   const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
   const [percentage, setPercentage] = useState(1 / activeParticipants.length)
+
   const handleActiveParticipantsChange = (e) => {
     const participantName = e.target.parentElement.nextSibling.textContent.trim();
     console.log(participantName);
@@ -58,13 +72,38 @@ export default function Transaction( {
     console.log(activeParticipants);
     setPercentage(1 / activeParticipants.length)
   }
+
   const handleTransactionNameChange = (e) => { setCurrentTransactionName(e.target.value) }
+  
   const handleTransactionTypeChange = (e) => { 
     console.log(e)
     setCurrentTransactionType(e) 
   }
+  
   const handleCostChange = (e) => { setCurrentCost(e.target.value) }
+ 
   const handlePaidByChange = (e) => { setCurrentPaidBy(e.target.value) }
+
+  
+  const breakdown = activeParticipants.map(activeParticipant => {
+    return { name: activeParticipant, percentage: percentage }
+  })
+  useEffect(() => {
+    if (newTransaction) {
+      setTransactionName(currentTransactionName)
+      setTransactionType(currentTransactionType)
+      setTransactionAmount(currentCost)
+      setTransactionPaidBy(currentPaidBy)
+      setTransactionBreakdown(breakdown)
+    }
+  }, [currentTransactionName, currentTransactionType, currentCost, currentPaidBy, breakdown, newTransaction, setTransactionName, setTransactionType, setTransactionAmount, setTransactionPaidBy, setTransactionBreakdown])
+  // if (newTransaction) {
+  //   setTransactionName(currentTransactionName)
+  //   setTransactionType(currentTransactionType)
+  //   setTransactionAmount(currentCost)
+  //   setTransactionPaidBy(currentPaidBy)
+  //   setTransactionBreakdown(breakdown)
+  // }
 
   // TODO: Handle if expense type is Reimbursement so there's only one participant with an owesWho, meaning that should be the value of currentPaidTo
 
@@ -82,7 +121,7 @@ export default function Transaction( {
             type: currentTransactionType,
             amount: currentCost,
             paidBy: currentPaidBy,
-            breakdown: []
+            breakdown: breakdown
           }
         }
       />}
@@ -187,6 +226,7 @@ export default function Transaction( {
           currentTransactionType === 'expense' &&
             <ParticipantSelect
             transaction={transaction}
+            setDivvyParticipants={setDivvyParticipants}
             divvyparticipants={divvyparticipants}
             currentCost={currentCost}
             handleActiveParticipantsChange = {handleActiveParticipantsChange}
