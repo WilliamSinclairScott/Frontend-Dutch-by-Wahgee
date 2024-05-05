@@ -10,19 +10,21 @@ export default function NavHeader({
   apiRequestOnSave, dataForapiRequestOnSave
 }) {
   const currentPath = useLocation().pathname
+  console.log('currentPath', currentPath);
   const divvyId = useParams().divvyId
   const transactionId = useParams().transactionId
   const onDivvyPage = divvyId ? true : false
   const navigate = useNavigate()
-  const shareData = {
-    title: 'Dutch',
-    text: 'Check out details about  on this link!',
-    url: { currentPath }
-  }
+  // const shareData = {
+  //   title: 'Dutch',
+  //   text: 'Check out details about  on this link!',
+  //   url: { currentPath }
+  // }
 
   const handleShare = async () => {
     try {
-      await navigator.share(shareData);
+      // await navigator.share(shareData);
+      await navigator.share();
       console.log('Content shared successfully!');
     } catch (error) {
       console.error('Error sharing:', error);
