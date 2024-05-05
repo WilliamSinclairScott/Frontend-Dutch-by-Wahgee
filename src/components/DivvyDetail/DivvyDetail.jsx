@@ -1,10 +1,14 @@
 import { Flex, Table } from '@radix-ui/themes'
 import TransactionListItem from '../TransactionListItem/TransactionListItem'
 import { AddButton } from '../AddButton/AddButton'
-import { getDivvyDetails } from '../../services/API/apiHelpers'
+import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import { useParams } from 'react-router-dom'
+<<<<<<< HEAD
 
 // Component to display detailed information about a specific divvy, including its transactions.
+=======
+import { divvyDetailReroute } from '../../services/Logic/buttonRerouteLogic'
+>>>>>>> b4da9bba4055e568e404e482570006ce02d7676c
 export default function DivvyDetail() {
   const { divvyId } = useParams() // Get divvy ID from URL parameters
   const divvyDetails = getDivvyDetails(divvyId) // Retrieve divvy details including transactions
@@ -30,7 +34,7 @@ export default function DivvyDetail() {
           </Table.Body>
         </Table.Root>
       </Flex>
-      <AddButton />
+      <AddButton action={divvyDetailReroute} />
     </>
   )
 }

@@ -20,7 +20,7 @@ export default function TransactionListItem({
   amount,
   paidBy,
   details,
-  date = new Date(),
+  date,
   _id
 }) {
   let detailText = ''
@@ -47,7 +47,11 @@ export default function TransactionListItem({
     if (!date) {
       return ''
     }
+<<<<<<< HEAD
     return date.toLocaleDateString("en-US", { month: "long", day: "2-digit" }) // Format the date to a more readable format
+=======
+    return new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+>>>>>>> b4da9bba4055e568e404e482570006ce02d7676c
   }
   formatDate(date)
   return (

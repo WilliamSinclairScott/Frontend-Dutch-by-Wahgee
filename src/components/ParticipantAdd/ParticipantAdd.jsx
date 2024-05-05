@@ -3,7 +3,7 @@ import { TextField } from '@radix-ui/themes';
 // Component to add a new participant input field.
 export default function ParticipantAdd() {
   return (
-<TextField.Root placeholder='New Participant' variant='surface' mt='3' size='3' > 
-          </TextField.Root>
+    <TextField.Root placeholder='New Participant' type='text' adjustresize='scroll' mt='3' size='3' >
+    </TextField.Root>
   )
 }

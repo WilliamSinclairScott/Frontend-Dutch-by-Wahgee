@@ -51,6 +51,7 @@ export async function login(email, password) {
  * @returns This returns the response data from the server
  */
 
+<<<<<<< HEAD
 // Updates user details based on a provided user ID and data for the update.
 export async function updateUser(userId, updates) {
   try {
@@ -64,4 +65,17 @@ export async function updateUser(userId, updates) {
     throw error;
   }
 }
+=======
+// export async function updateUser(userId, updates) {
+//   try {
+//     const response = await api.patch(`/user/${userId}`, updates);
+//     return response.data;
+//   } catch (error) {
+//     console.error({
+//       "Error during update user:": error.response ? error.response.data : "Network or other error"
+//     })
+//     throw error;
+//   }
+// }
+>>>>>>> b4da9bba4055e568e404e482570006ce02d7676c
 

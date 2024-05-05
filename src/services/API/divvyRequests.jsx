@@ -1,6 +1,5 @@
 import api from './apiConnect';
 
-
 /**
  * 
  * @param {*} divvyName String

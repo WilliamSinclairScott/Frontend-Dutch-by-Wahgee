@@ -1,6 +1,10 @@
 import axios from 'axios'
+<<<<<<< HEAD
 import { saveResponseToSession } from './apiHelpers'
 // Creating an instance of axios with default properties
+=======
+import { saveResponseToSession } from '../SessionStorage/StoreAndUpdate'
+>>>>>>> b4da9bba4055e568e404e482570006ce02d7676c
 const api = axios.create({
 // Setting the base URL for all HTTP requests
   baseURL: 'https://dutch-api-96185a8842ba.herokuapp.com',

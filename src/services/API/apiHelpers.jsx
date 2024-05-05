@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //save response to sesion storage
 /**
  * Saves the full API response to session storage to maintain state across app
@@ -87,3 +88,5 @@ export function getDivvyDetails(_id) {
     throw error
   }
 }
+=======
+>>>>>>> b4da9bba4055e568e404e482570006ce02d7676c
