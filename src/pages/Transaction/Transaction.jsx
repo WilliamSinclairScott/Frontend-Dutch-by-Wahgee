@@ -5,9 +5,11 @@ import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSel
 import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 //TODO Add turnery : Expense type reimbursement true show 'Paid to' table row, false show ParticipantSelect
 import NavHeader from '../../components/NavHeader/NavHeader';
+import DutchAlertDialog from '../../components/DutchAlertDialog/DutchAlertDialog';
 import { updateTransaction } from '../../services/API/divvyRequests';
+import { deleteTransaction } from '../../services/API/divvyRequests';
 
-export default function Transaction( {
+export default function Transaction({
   newTransaction,
   transactionName,
   setTransactionName,
@@ -21,10 +23,10 @@ export default function Transaction( {
   setTransactionBreakdown,
   participants,
   setParticipants,
-  
-} ) {
 
-  if(newTransaction){
+}) {
+
+  if (newTransaction) {
     //Im going to need the following back
     // transactionName,
     // transactionType,
@@ -40,7 +42,7 @@ export default function Transaction( {
   const divvyDetails = getDivvyDetails(divvyId)
 
   let transaction = divvyDetails?.transactions?.find(transaction => transaction._id === transactionId)
-  const [divvyparticipants,setDivvyParticipants]= useState(divvyDetails?.participants)
+  const [divvyparticipants, setDivvyParticipants] = useState(divvyDetails?.participants)
 
   if (newTransaction) {
     transaction = {
@@ -79,25 +81,25 @@ export default function Transaction( {
     if (newTransaction) setTransactionBreakdown(newBreakdown)
   }
 
-  const handleTransactionNameChange = (e) => { 
-    setCurrentTransactionName(e.target.value) 
+  const handleTransactionNameChange = (e) => {
+    setCurrentTransactionName(e.target.value)
     if (newTransaction) setTransactionName(currentTransactionName)
   }
-  
-  const handleTransactionTypeChange = (e) => { 
+
+  const handleTransactionTypeChange = (e) => {
     setCurrentTransactionType(e)
     if (newTransaction) setTransactionType(currentTransactionType)
   }
-  
-  const handleCostChange = (e) => { 
+
+  const handleCostChange = (e) => {
     console.log('e.target.value', e.target.value)
     setCurrentCost(e.target.value)
     if (newTransaction) setTransactionAmount(currentCost)
     console.log('currentCost', currentCost, " transactionAmount", transactionAmount)
   }
- 
-  const handlePaidByChange = (e) => { 
-    setCurrentPaidBy(e.target.value) 
+
+  const handlePaidByChange = (e) => {
+    setCurrentPaidBy(e.target.value)
     if (newTransaction) setTransactionPaidBy(currentPaidBy)
   }
 
@@ -109,23 +111,23 @@ export default function Transaction( {
 
   return (
     <>
-      { 
-      !newTransaction&& 
-        <NavHeader 
-        title='Edit Transaction'
-        apiRequestOnSave={updateTransaction}
-        dataForapiRequestOnSave={
-          {
-            transactionId: transactionId,
-            divvyId: divvyId,
-            transactionName: currentTransactionName,
-            type: currentTransactionType,
-            amount: currentCost,
-            paidBy: currentPaidBy,
-            breakdown: breakdown
+      {
+        !newTransaction &&
+        <NavHeader
+          title='Edit Transaction'
+          apiRequestOnSave={updateTransaction}
+          dataForapiRequestOnSave={
+            {
+              transactionId: transactionId,
+              divvyId: divvyId,
+              transactionName: currentTransactionName,
+              type: currentTransactionType,
+              amount: currentCost,
+              paidBy: currentPaidBy,
+              breakdown: breakdown
+            }
           }
-        }
-      />}
+        />}
       <Flex direction='column' gap='4' mt='5' >
         <Table.Root size='3'>
           <Table.Body >
@@ -202,40 +204,50 @@ export default function Transaction( {
             </Table.Row>
             {
               currentTransactionType === 'reimbursement' &&
-                <Table.Row align='center'>
-                  <Table.Cell>Paid to</Table.Cell>
-                  <Table.Cell justify='end'>
-                    <Select.Root
-                      size='3'
-                    >
-                      <Select.Trigger variant='ghost' />
-                      <Select.Content>
-                        {divvyparticipants.map(participant => {
-                          return <Select.Item key={participant._id} value={participant.participantName}>
-                            {participant.participantName}
-                          </Select.Item>
-                        })}
-                      </Select.Content>
-                    </Select.Root>
-                  </Table.Cell>
-                </Table.Row>
-            //TODO: Add submit button for reimbursement
+              <Table.Row align='center'>
+                <Table.Cell>Paid to</Table.Cell>
+                <Table.Cell justify='end'>
+                  <Select.Root
+                    size='3'
+                  >
+                    <Select.Trigger variant='ghost' />
+                    <Select.Content>
+                      {divvyparticipants.map(participant => {
+                        return <Select.Item key={participant._id} value={participant.participantName}>
+                          {participant.participantName}
+                        </Select.Item>
+                      })}
+                    </Select.Content>
+                  </Select.Root>
+                </Table.Cell>
+              </Table.Row>
+              //TODO: Add submit button for reimbursement
             }
           </Table.Body>
         </Table.Root>
         {
           currentTransactionType !== 'reimbursement' &&
-            <ParticipantSelect
+          <ParticipantSelect
             transaction={transaction}
             setDivvyParticipants={setDivvyParticipants}
             divvyparticipants={divvyparticipants}
             currentCost={currentCost}
-            handleActiveParticipantsChange = {handleActiveParticipantsChange}
-            portion={currentCost*percentage}
+            handleActiveParticipantsChange={handleActiveParticipantsChange}
+            portion={currentCost * percentage}
             activeParticipants={activeParticipants}
-            />
+          />
           //TODO: Add submit button for expense
         }
+        <DutchAlertDialog
+          triggerButtonText={`Delete ${currentTransactionName}`}
+          triggerButtonVariant='outline'
+          title={`Delete ${currentTransactionName}`}
+          message='Are you sure you want to delete this transaction? This action cannot be undone.'
+          cancelButtonText='Cancel'
+          actionButtonText='Delete'
+          action={() => console.log('Delete Transaction Button is being called')}
+          // action={deleteTransaction (divvyId, transactionId)}
+        />
       </Flex >
     </>
   )

@@ -113,6 +113,7 @@ export default function Divvy() {
             editMode &&
             <DivvyEdit
               divvyName={divvyName}
+              divvyId={divvyId}
               setDivvyName={setDivvyName}
               participants={participants}
               setParticipants={setParticipants}
