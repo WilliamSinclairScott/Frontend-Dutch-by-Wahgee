@@ -3,7 +3,7 @@ import TransactionListItem from '../TransactionListItem/TransactionListItem'
 import { AddButton } from '../AddButton/AddButton'
 import { getDivvyDetails } from '../../services/SessionStorage/fromSession'
 import { useParams } from 'react-router-dom'
-export default function DivvyDetail({ switchEditMode }) {
+export default function DivvyDetail({ changeTransactionStatus }) {
   const { divvyId } = useParams()
   const divvyDetails = getDivvyDetails(divvyId)
   const divvyTransactions = divvyDetails.transactions
@@ -28,7 +28,7 @@ export default function DivvyDetail({ switchEditMode }) {
           </Table.Body>
         </Table.Root>
       </Flex>
-      <AddButton action={switchEditMode} />
+      <AddButton action={changeTransactionStatus} />
     </>
   )
 }

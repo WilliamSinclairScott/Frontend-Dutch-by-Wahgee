@@ -1,13 +1,13 @@
 import { useState } from 'react'
+import Transaction from '../Transaction/Transaction'
 import { Flex, Tabs, Box, Text } from '@radix-ui/themes'
 import NavHeader from '../../components/NavHeader/NavHeader'
 import DivvyDetail from '../../components/DivvyDetail/DivvyDetail'
 import DivvyBalances from '../../components/DivvyBalances/DivvyBalances'
 import DivvyEdit from '../../components/DivvyEdit/DivvyEdit'
-import { getUserId, getDivvyDetails } from '../../services/SessionStorage/fromSession'
-import { updateDivvy } from '../../services/API/divvyRequests'
+import { getUserId, getDivvyDetails, getUserDisplayName } from '../../services/SessionStorage/fromSession'
+import { updateDivvy,createTransaction } from '../../services/API/divvyRequests'
 import { useParams } from 'react-router-dom'
-import { useState } from 'react'
 
 export default function Divvy() {
     //TODO: Make this a secure function after merging is all working
@@ -16,12 +16,17 @@ export default function Divvy() {
   const divvyDetails = getDivvyDetails(divvyId)
 
   const [editMode, setEditMode] = useState(false)
-
-
+  const [addTransaction, setAddTransaction] = useState(false)
+  const changeTransactionStatus = () => {setAddTransaction(!addTransaction)}
   const [divvyName, setDivvyName] = useState(divvyDetails.divvyName)
   //Actual participant object
   const [participants, setParticipants] = useState(divvyDetails.participants)
-
+  //Needs to be passed to Transaction to be edited and hoiseted back for createTransaction
+  const [transactionName, setTransactionName] = useState('')
+  const [transactionType, setTransactionType] = useState('expense')
+  const [transactionAmount, setTransactionAmount] = useState(0)
+  const [transactionPaidBy, setTransactionPaidBy] = useState(getUserDisplayName)
+  const [transactionBreakdown, setTransactionBreakdown] = useState([])
   
   const deleteParticipant = (e) => {
     //TODO: Stop deletion if participant has transactions or owesWho
@@ -33,31 +38,47 @@ export default function Divvy() {
       setParticipants(updated)
     }
   }
-
+//
   const debounceChange = (e) => {
-    let delay
-    clearTimeout(delay)
-    delay = setTimeout(() => {
-      console.log('debounced', e.target.value, e.target.id)
-      //remove the old value and replace with the new value
-      const updated = [...participants]
-      updated[e.target.id].name = e.target.value
-      setParticipants(updated)
-    }, 1500)
+    const updated = [...participants]
+    console.log(updated)
+    updated[e.target.id].participantName = e.target.value
+    setParticipants(updated)
+    
+    // let delay
+    // clearTimeout(delay)
+    // delay = setTimeout(() => {
+    //   console.log('debounced', e.target.value, e.target.id)
+    //   //remove the old value and replace with the new value
+    // }, 1500)
   }
-
+  
   return (
     <>
-      <NavHeader title='Dutch' 
+      <NavHeader 
+      title= {addTransaction ? 'New Transaction' : divvyName}
+      addTransaction={addTransaction}
+      setAddTransaction={setAddTransaction}
       editMode={editMode}
       setEditMode={setEditMode}
-      apiRequestOnSave={updateDivvy}
-      dataForapiRequestOnSave={{
+      apiRequestOnSave={(addTransaction ? createTransaction : updateDivvy)}
+      dataForapiRequestOnSave={addTransaction ? {
+        //TODO: Add createTransaction data
+        divvyId: divvyId,
+        transactionName: transactionName,
+        type: transactionType,
+        amount: transactionAmount,
+        paidBy: transactionPaidBy,
+        breakdown: transactionBreakdown
+      }:{
+        //TODO: Add update divvy data
+        divvyId: divvyId,
         divvyName: divvyName,
         owner: getUserId(),
         participants: participants
       }}
       />
+      { !addTransaction &&
         <Flex direction='column'>
           { !editMode &&
             <Tabs.Root defaultValue='details'>
@@ -72,13 +93,14 @@ export default function Divvy() {
               <Box pt='2'>
                 <Tabs.Content value='details'>
                   <DivvyDetail
-                    divvyName={divvyName}
-                    setDivvyName={setDivvyName}
-                    participants={participants}
-                    setParticipants={setParticipants}
-                    isUpdate={true}
-                    deleteParticipant={deleteParticipant}
-                    debounceChange={debounceChange}
+                    changeTransactionStatus={changeTransactionStatus}
+                    // divvyName={divvyName}
+                    // setDivvyName={setDivvyName}
+                    // participants={participants}
+                    // setParticipants={setParticipants}
+                    // isUpdate={true}
+                    // deleteParticipant={deleteParticipant}
+                    // debounceChange={debounceChange}
                     />
                 </Tabs.Content>
                 <Tabs.Content value='balances'>
@@ -101,6 +123,25 @@ export default function Divvy() {
 
           }
         </Flex >
+        }
+        {  
+        addTransaction &&
+          <Transaction
+          newTransaction={addTransaction}
+          transactionName={transactionName}
+          setTransactionName={setTransactionName}
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
+          transactionAmount={transactionAmount}
+          setTransactionAmount={setTransactionAmount}
+          transactionPaidBy={transactionPaidBy}
+          setTransactionPaidBy={setTransactionPaidBy}
+          transactionBreakdown={transactionBreakdown}
+          setTransactionBreakdown={setTransactionBreakdown}
+          participants={participants}
+          setParticipants={setParticipants}
+          />
+        }
       </>
       )
 }

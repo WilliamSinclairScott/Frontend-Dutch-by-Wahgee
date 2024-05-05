@@ -27,20 +27,25 @@ export default function DivvyList() {
   }
 
   const debounceChange = (e) => {
-    let delay
-    clearTimeout(delay)
-    delay = setTimeout(() => {
-      console.log('debounced', e.target.value, e.target.id)
-      //remove the old value and replace with the new value
-      const updated = [...participants]
-      updated[e.target.id] = e.target.value
-      setParticipants(updated)
-    }, 1500)
+    const updated = [...participants]
+    updated[e.target.id] = e.target.value
+    setParticipants(updated)
+    console.log(updated)
+    console.log('debounced', e.target.value, e.target.id)
+    // let delay
+    // clearTimeout(delay)
+    // delay = setTimeout(() => {
+    //  
+    //   
+    //   setParticipants(updated)
+    //   console.log('debounced', e.target.value, e.target.id)
+    //   //remove the old value and replace with the new value
+    // }, 0)
   }
 
   return (
     <>
-      <NavHeader title='Dutch' 
+      <NavHeader title={editMode ? 'New Divvy' : 'Dutch'} 
       editMode={editMode}
       setEditMode={setEditMode}
       apiRequestOnSave={createDivvy}

@@ -8,7 +8,6 @@ export default function DivvyEdit(
     deleteParticipant, debounceChange
   }
 ) {
-  //TODO: Add logic to handle the case where the divvy is being updated, instead of created
   //change participants to just an array of strings, still keeping index order in mind for later implementation
   const participantNames = participants.map(participant => participant.participantName ? participant.participantName : participant)
   console.log('participants', participants)
@@ -50,7 +49,7 @@ export default function DivvyEdit(
             <Table.Body>
               {participantNames.map((participant) => {
                 return <ParticipantEdit
-                        key={participant + Math.random()}
+                        key={participantNames.indexOf(participant)}
                         indexOf={participantNames.indexOf(participant)}
                         participant={participant}
                         deleteParticipant={deleteParticipant}

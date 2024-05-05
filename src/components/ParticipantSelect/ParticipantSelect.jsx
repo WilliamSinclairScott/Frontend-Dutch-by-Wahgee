@@ -1,25 +1,25 @@
-import { useState } from 'react'
 import { Flex, Text, Table } from '@radix-ui/themes'
 import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
 import ParticipantSelectRow from '../ParticipantSelectRow/ParticipantSelectRow'
 //TODO: If participant exists in breakdown calculate amount*percentage
 //TODO: useState to recalculate percentage on checkbox change
 
-export default function ParticipantSelect({ transaction, divvyparticipants, currentCost }) {
-  const startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
-  const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
-  const [percentage, setPercentage] = useState(1 / activeParticipants.length)
-  const handleActiveParticipantsChange = (e) => {
-    const participantName = e.target.parentElement.nextSibling.textContent.trim();
-    console.log(participantName);
-    if (activeParticipants.includes(participantName)) {
-      activeParticipants.splice(activeParticipants.indexOf(participantName), 1)
-    } else {
-      activeParticipants.push(participantName)
-    }
-    console.log(activeParticipants);
-    setPercentage(1 / activeParticipants.length)
+export default function ParticipantSelect({ 
+  divvyparticipants, setDivvyParticipants,
+  activeParticipants, setActiveParticipants,
+  handleActiveParticipantsChange, portion
+}) {
+  const participantNames = divvyparticipants.map(participant => participant.participantName ? participant.participantName : participant)
+  console.log('divvyparticipants', divvyparticipants)
+  console.log('participantNames', participantNames)
+  const addParticipant = (e) => {
+    //from the button to the input of the textfield
+    const input = e.target.previousSibling.children[0].value
+    const updated = [...divvyparticipants, input]
+    e.target.previousSibling.children[0].value = ''
+    setDivvyParticipants(updated)
   }
+
   return (
     <>
       <Flex direction='column' mt='9'>
@@ -31,12 +31,12 @@ export default function ParticipantSelect({ transaction, divvyparticipants, curr
                 key={participant._id}
                 participant={participant}
                 activeParticipants={activeParticipants}
-                portion={percentage*currentCost}
+                portion={portion}
                 handleActiveParticipantsChange={handleActiveParticipantsChange} />
             ))}
           </Table.Body>
         </Table.Root>
-        <ParticipantAdd />
+        <ParticipantAdd addParticipant={addParticipant}/>
       </Flex>
     </>
   )
