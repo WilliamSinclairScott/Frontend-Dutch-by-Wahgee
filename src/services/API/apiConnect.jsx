@@ -3,7 +3,8 @@ import { saveResponseToSession } from '../SessionStorage/StoreAndUpdate'
 import Cookies from 'js-cookie'
 
 const api = axios.create({
-  baseURL: 'https://dutch-api-96185a8842ba.herokuapp.com',
+  baseURL: 'https://api.dutch.webdevstuff.ninja',
+  //baseURL: 'https://dutch-api-96185a8842ba.herokuapp.com',
   //baseURL: 'http://localhost:7777',
   withCredentials: true
 })
