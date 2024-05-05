@@ -6,8 +6,8 @@ import { Table, Checkbox } from '@radix-ui/themes'
 export default function ParticipantSelectRow(
   { participant, activeParticipants, portion, handleActiveParticipantsChange }
 ) {
-  const dataState = activeParticipants.includes(participant.participantName ? participant.participantName : participant)
-  const [checkedStatus, setCheckedStatus] = useState(dataState)
+  const dataState = activeParticipants?.includes(participant.participantName ? participant.participantName : participant)
+  const [checkedStatus, setCheckedStatus] = useState(dataState ? dataState : false)
   const handleCheckedStatusChange = () => {
     setCheckedStatus(!checkedStatus)
   }
@@ -26,7 +26,7 @@ export default function ParticipantSelectRow(
           {participant.participantName ? participant.participantName : participant}
         </Table.Cell>
         <Table.Cell justify='end' width='1%'>{
-          activeParticipants.includes(participant.participantName ? participant.participantName : participant) ?
+          activeParticipants?.includes(participant.participantName ? participant.participantName : participant) ?
             `$${portion.toFixed(2)}` : ``
         }
         </Table.Cell>

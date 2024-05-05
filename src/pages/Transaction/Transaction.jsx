@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
@@ -223,7 +223,7 @@ export default function Transaction( {
           </Table.Body>
         </Table.Root>
         {
-          currentTransactionType === 'expense' &&
+          currentTransactionType !== 'reimbursement' &&
             <ParticipantSelect
             transaction={transaction}
             setDivvyParticipants={setDivvyParticipants}
@@ -232,15 +232,8 @@ export default function Transaction( {
             handleActiveParticipantsChange = {handleActiveParticipantsChange}
             portion={currentCost*percentage}
             activeParticipants={activeParticipants}
-            
             />
           //TODO: Add submit button for expense
-        }
-        {
-          //TODO: Add the plus sign infront of the dollar sign
-          currentTransactionType === 'refund' &&
-            <ParticipantSelect transaction={transaction} divvyparticipants={divvyparticipants} currentCost={currentCost} />
-          //TODO: Add submit button for refund
         }
       </Flex >
     </>
