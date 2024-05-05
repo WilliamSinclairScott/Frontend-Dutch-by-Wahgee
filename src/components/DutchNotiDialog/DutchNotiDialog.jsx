@@ -1,6 +1,9 @@
 import { Dialog, Flex, Button } from "@radix-ui/themes"
 
-export default function DivvyNotiDialog(
+export default function DutchNotiDialog(
+  triggerButtonText = 'Delete',
+  triggerButtonVariant = 'solid',
+  triggerButtonColor = 'red',
   title = "Can't remove participant",
   message = "To remove a participant you first need to remove any associations they have with any Transactions.",
   closeButtonText = "Dismiss") {
@@ -10,9 +13,16 @@ export default function DivvyNotiDialog(
   return (
     <>
       <Dialog.Root>
-        {/* <Dialog.Trigger>
-        <Button>Uh-Oh</Button>
-        </Dialog.Trigger> */}
+        <Dialog.Trigger>
+          <Button
+            my='6'
+            size='3'
+            variant={triggerButtonVariant}
+            color={triggerButtonColor}
+          >
+            {triggerButtonText}
+          </Button>
+        </Dialog.Trigger>
         <Dialog.Content maxWidth="450px">
           <Dialog.Title>{title}</Dialog.Title>
           <Dialog.Description size="2" mb="4">
