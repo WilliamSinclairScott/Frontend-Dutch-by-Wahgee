@@ -16,7 +16,7 @@ export default function ParticipantEdit({ participant, deleteParticipant, deboun
             <Box>
               <TextField.Root
                 size='3'
-                value={participant}
+                defaultValue={participant}
                 onChange={debounceChange}
                 id = {indexOf}
                 />

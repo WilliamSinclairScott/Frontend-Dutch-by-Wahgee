@@ -49,7 +49,7 @@ export default function DivvyEdit(
             <Table.Body>
               {participantNames.map((participant) => {
                 return <ParticipantEdit
-                        key={participant + Math.random()}
+                        key={participantNames.indexOf(participant)}
                         indexOf={participantNames.indexOf(participant)}
                         participant={participant}
                         deleteParticipant={deleteParticipant}

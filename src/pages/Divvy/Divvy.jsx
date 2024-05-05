@@ -41,7 +41,8 @@ export default function Divvy() {
 //
   const debounceChange = (e) => {
     const updated = [...participants]
-    updated[e.target.id].name = e.target.value
+    console.log(updated)
+    updated[e.target.id].participantName = e.target.value
     setParticipants(updated)
     
     // let delay
@@ -93,13 +94,13 @@ export default function Divvy() {
                 <Tabs.Content value='details'>
                   <DivvyDetail
                     changeTransactionStatus={changeTransactionStatus}
-                    divvyName={divvyName}
-                    setDivvyName={setDivvyName}
-                    participants={participants}
-                    setParticipants={setParticipants}
-                    isUpdate={true}
-                    deleteParticipant={deleteParticipant}
-                    debounceChange={debounceChange}
+                    // divvyName={divvyName}
+                    // setDivvyName={setDivvyName}
+                    // participants={participants}
+                    // setParticipants={setParticipants}
+                    // isUpdate={true}
+                    // deleteParticipant={deleteParticipant}
+                    // debounceChange={debounceChange}
                     />
                 </Tabs.Content>
                 <Tabs.Content value='balances'>
