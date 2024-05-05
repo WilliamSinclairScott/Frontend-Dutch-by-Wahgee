@@ -8,14 +8,14 @@ const api = axios.create({
   withCredentials: true
 })
 
-// api.interceptors.request.use(config => {
+api.interceptors.request.use(config => {
   
-//     const token = Cookies.get('token')
+    const token = Cookies.get('token')
 
-//     console.log('token', token)
-//     config.cookies = token
-//     return config
-// })
+    console.log('token', token)
+    config.cookies = token
+    return config
+})
 
 api.interceptors.response.use(response => {
   console.log('response', response)
