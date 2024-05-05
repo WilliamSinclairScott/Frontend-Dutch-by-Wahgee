@@ -246,7 +246,8 @@ export default function Transaction({
           message='Are you sure you want to delete this transaction? This action cannot be undone.'
           cancelButtonText='Cancel'
           actionButtonText='Delete'
-          action={() => console.log('Delete Transaction Button is being called')}
+          action={() => deleteTransaction(divvyId, transactionId)}
+            // console.log('Delete Transaction Button is being called')}
           // action={deleteTransaction (divvyId, transactionId)}
         />
       )}
