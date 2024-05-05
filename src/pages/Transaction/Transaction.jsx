@@ -60,7 +60,7 @@ export default function Transaction( {
   const startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
   const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
   const [percentage, setPercentage] = useState(1 / activeParticipants.length)
-
+  const [breakdown, setBreakdown] = useState([])
   const handleActiveParticipantsChange = (e) => {
     const participantName = e.target.parentElement.nextSibling.textContent.trim();
     console.log(participantName);
@@ -71,37 +71,37 @@ export default function Transaction( {
     }
     console.log(activeParticipants);
     setPercentage(1 / activeParticipants.length)
+    const newBreakdown = activeParticipants.map(activeParticipant => {
+      return { name: activeParticipant, percentage: percentage }
+    })
+
+    setBreakdown(newBreakdown)
+    if (newTransaction) setTransactionBreakdown(newBreakdown)
   }
 
-  const handleTransactionNameChange = (e) => { setCurrentTransactionName(e.target.value) }
+  const handleTransactionNameChange = (e) => { 
+    setCurrentTransactionName(e.target.value) 
+    if (newTransaction) setTransactionName(currentTransactionName)
+  }
   
   const handleTransactionTypeChange = (e) => { 
-    console.log(e)
-    setCurrentTransactionType(e) 
+    setCurrentTransactionType(e)
+    if (newTransaction) setTransactionType(currentTransactionType)
   }
   
-  const handleCostChange = (e) => { setCurrentCost(e.target.value) }
+  const handleCostChange = (e) => { 
+    console.log('e.target.value', e.target.value)
+    setCurrentCost(e.target.value)
+    if (newTransaction) setTransactionAmount(currentCost)
+    console.log('currentCost', currentCost, " transactionAmount", transactionAmount)
+  }
  
-  const handlePaidByChange = (e) => { setCurrentPaidBy(e.target.value) }
+  const handlePaidByChange = (e) => { 
+    setCurrentPaidBy(e.target.value) 
+    if (newTransaction) setTransactionPaidBy(currentPaidBy)
+  }
 
-  
-  const breakdown = activeParticipants.map(activeParticipant => {
-    return { name: activeParticipant, percentage: percentage }
-  })
-  useEffect(() => {
-    if (newTransaction) {
-      setTransactionName(currentTransactionName)
-      setTransactionType(currentTransactionType)
-      setTransactionAmount(currentCost)
-      setTransactionPaidBy(currentPaidBy)
-      setTransactionBreakdown(breakdown)
-    }
-  }, [currentTransactionName, currentTransactionType, currentCost, currentPaidBy, breakdown, newTransaction, setTransactionName, setTransactionType, setTransactionAmount, setTransactionPaidBy, setTransactionBreakdown])
-  // if (newTransaction) {
-  //   setTransactionName(currentTransactionName)
-  //   setTransactionType(currentTransactionType)
-  //   setTransactionAmount(currentCost)
-  //   setTransactionPaidBy(currentPaidBy)
+  // if (newTransaction)
   //   setTransactionBreakdown(breakdown)
   // }
 

@@ -40,17 +40,18 @@ export default function Divvy() {
   }
 //
   const debounceChange = (e) => {
-    let delay
-    clearTimeout(delay)
-    delay = setTimeout(() => {
-      console.log('debounced', e.target.value, e.target.id)
-      //remove the old value and replace with the new value
-      const updated = [...participants]
-      updated[e.target.id].name = e.target.value
-      setParticipants(updated)
-    }, 1500)
+    const updated = [...participants]
+    updated[e.target.id].name = e.target.value
+    setParticipants(updated)
+    
+    // let delay
+    // clearTimeout(delay)
+    // delay = setTimeout(() => {
+    //   console.log('debounced', e.target.value, e.target.id)
+    //   //remove the old value and replace with the new value
+    // }, 1500)
   }
-
+  
   return (
     <>
       <NavHeader 
