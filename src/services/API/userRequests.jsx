@@ -35,6 +35,8 @@ export async function login(email, password) {
       "email": email,
       "password": password
     }); 
+    // Save the API cookie
+    api.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
     return response.data;
   } catch (error) {
     console.error({"Error during login:": error.response ? error.response.data : "Network or other error",})

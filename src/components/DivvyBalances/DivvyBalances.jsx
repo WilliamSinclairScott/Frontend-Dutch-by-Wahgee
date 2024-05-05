@@ -13,9 +13,9 @@ export default function DivvyBalances() {
     <>
       <Flex direction='column' justify='start'>
         {
-          balances.map(balance => (
+          balances.map((balance, index) => (
             <ParticipantBalance
-              key={balance._id}
+              key={index}
               participantName={balance.name}
               owesWho={balance.owes}
               balance={balance.balance}

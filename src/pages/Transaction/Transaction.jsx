@@ -117,6 +117,7 @@ export default function Transaction( {
         dataForapiRequestOnSave={
           {
             transactionId: transactionId,
+            divvyId: divvyId,
             transactionName: currentTransactionName,
             type: currentTransactionType,
             amount: currentCost,
