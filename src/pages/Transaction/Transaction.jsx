@@ -238,6 +238,7 @@ export default function Transaction({
           />
           //TODO: Add submit button for expense
         }
+        {!newTransaction && (
         <DutchAlertDialog
           triggerButtonText={`Delete ${currentTransactionName}`}
           triggerButtonVariant='outline'
@@ -248,6 +249,7 @@ export default function Transaction({
           action={() => console.log('Delete Transaction Button is being called')}
           // action={deleteTransaction (divvyId, transactionId)}
         />
+      )}
       </Flex >
     </>
   )

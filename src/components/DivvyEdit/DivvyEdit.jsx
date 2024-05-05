@@ -62,6 +62,7 @@ export default function DivvyEdit(
           </Table.Root>
           <ParticipantAdd addParticipant={addParticipant} />
         </Box>
+        {isUpdate && (
         <DutchAlertDialog
           triggerButtonText={`Delete ${divvyName}`}
           triggerButtonVariant='outline'
@@ -72,6 +73,7 @@ export default function DivvyEdit(
           action={() => console.log(`Delete Divvy Button for divvyId ${divvyId} is being called`)}
           // action={deleteDivvy(divvyId)}
         />
+      )}
       </Flex>
     </>
   )
