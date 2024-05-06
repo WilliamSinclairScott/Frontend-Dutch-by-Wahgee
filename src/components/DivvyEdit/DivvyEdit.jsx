@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Flex, Table, Box, TextField, Text } from '@radix-ui/themes'
 import ParticipantEdit from '../ParticipantEdit/ParticipantEdit'
 import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
@@ -14,11 +15,15 @@ export default function DivvyEdit(
   const participantNames = participants.map(participant => participant.participantName ? participant.participantName : participant)
   console.log('participants', participants)
   console.log('participantNames', participantNames)
+  const [newParticipant, setNewParticipant] = useState('')
+  const handleInputChange = (e) => {
+    setNewParticipant(e.target.value)
+  }
   const addParticipant = (e) => {
     //from the button to the input of the textfield
     const input = e.target.previousSibling.children[0].value
     const updated = [...participants, input]
-    e.target.previousSibling.children[0].value = ''
+    setNewParticipant('')
     setParticipants(updated)
   }
 
@@ -27,9 +32,6 @@ export default function DivvyEdit(
   return (
     <>
       <Flex direction='column'>
-        {/* <Text as="div" size="2" mt='4'>
-          {isUpdate ? 'Update' : 'Create'} Divvy
-        </Text> */}
         <label>
           <Text as="div" size="3">
             Title
@@ -60,21 +62,23 @@ export default function DivvyEdit(
               })}
             </Table.Body>
           </Table.Root>
-          <ParticipantAdd addParticipant={addParticipant} />
+          <ParticipantAdd
+            addParticipant={addParticipant}
+            newParticipant={newParticipant}
+            handleInputChange={handleInputChange}
+          />
         </Box>
         {isUpdate && (
-        <DutchAlertDialog
-          triggerButtonText={`Delete ${divvyName}`}
-          triggerButtonVariant='outline'
-          title={`Delete ${divvyName}`}
-          message='Are you sure you want to delete this Divvy? This action cannot be undone.'
-          cancelButtonText='Cancel'
-          actionButtonText='Delete'
-          action={() => deleteDivvy(divvyId)}
-            // console.log(`Delete Divvy Button for divvyId ${divvyId} is being called`)}
-          // action={deleteDivvy(divvyId)}
-        />
-      )}
+          <DutchAlertDialog
+            triggerButtonText={`Delete ${divvyName}`}
+            triggerButtonVariant='outline'
+            title={`Delete ${divvyName}`}
+            message='Are you sure you want to delete this Divvy? This action cannot be undone.'
+            cancelButtonText='Cancel'
+            actionButtonText='Delete'
+            action={() => deleteDivvy(divvyId)}
+          />
+        )}
       </Flex>
     </>
   )
