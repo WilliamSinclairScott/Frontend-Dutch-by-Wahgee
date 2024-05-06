@@ -24,7 +24,7 @@ export default function Divvy() {
   //Needs to be passed to Transaction to be edited and hoiseted back for createTransaction
   const [transactionName, setTransactionName] = useState('')
   const [transactionType, setTransactionType] = useState('expense')
-  const [transactionAmount, setTransactionAmount] = useState(0)
+  const [transactionAmount, setTransactionAmount] = useState()
   const [transactionPaidBy, setTransactionPaidBy] = useState(getUserDisplayName)
   const [transactionBreakdown, setTransactionBreakdown] = useState([])
   

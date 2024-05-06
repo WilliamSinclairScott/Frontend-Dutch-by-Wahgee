@@ -36,7 +36,7 @@ export default function TransactionListItem({
     if (transactionType === 'reimbursement') {
       TransactionIcon = ReimbursementIcon
       //there will only be one person in the breakdown
-      detailText = `${details[0].name} reimbursed ${paidBy}`
+      detailText = `${details[0]?.name ? details[0].name : 'someone'} reimbursed ${paidBy}`
     }
   }
   getIcon()

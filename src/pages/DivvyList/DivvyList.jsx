@@ -70,7 +70,7 @@ export default function DivvyList() {
         </Table.Root>
         {
           //Make a new Divvy, isUpdate is false
-          editMode &&
+          editMode && (
           <DivvyEdit
           divvyName={divvyName}
           setDivvyName={setDivvyName}
@@ -80,7 +80,7 @@ export default function DivvyList() {
           deleteParticipant={deleteParticipant}
           debounceChange={debounceChange}
           />
-        }
+        )}
       </Flex>
       {
         !editMode &&
