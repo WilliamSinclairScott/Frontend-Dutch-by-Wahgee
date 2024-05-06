@@ -61,11 +61,11 @@ export default function Transaction({
   const [currentPaidBy, setCurrentPaidBy] = useState(transaction.paidBy)
   
   let startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
-  if (newTransaction) startingActiveParticipants = participants
+  if (newTransaction) startingActiveParticipants = divvyDetails.participants.map(participant => participant.participantName)
   //console.log('startingActiveParticipants', startingActiveParticipants)
   const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
   const handleActiveParticipantsChange = (e) => {
-    e.preventDefault()
+
     const participantName = e.target.parentElement.nextSibling.textContent.trim();
     console.log('Hey, Add or remove: ',participantName);
     if (activeParticipants.includes(participantName)) {
@@ -78,7 +78,7 @@ export default function Transaction({
   }
 
   const handleTransactionNameChange = (e) => {
-    e.preventDefault()
+
     setCurrentTransactionName(e.target.value)
     if (newTransaction){
       setTransactionName(currentTransactionName)
@@ -86,15 +86,20 @@ export default function Transaction({
   }
 
   const handleTransactionTypeChange = (e) => {
-    e.preventDefault()
+
     setCurrentTransactionType(e)
     if (newTransaction) {
       setTransactionType(currentTransactionType)
     }
   }
 
+  const handelReImbursement = (e) => {
+    setActiveParticipants([e])
+
+  }
+
   const handleCostChange = (e) => {
-    e.preventDefault()
+
     setCurrentCost(e.target.value)
     if (newTransaction) {
       setTransactionAmount(currentCost)
@@ -119,15 +124,16 @@ export default function Transaction({
     setCurrentTransactionType(currentTransactionType)
     setCurrentCost(currentCost)
     setCurrentPaidBy(currentPaidBy)
-    console.log('useEffect paidBy', currentPaidBy)
+    //console.log('useEffect paidBy', currentPaidBy)
     if(newTransaction) {
       setTransactionName(currentTransactionName)
       setTransactionType(currentTransactionType)
       setTransactionAmount(currentCost)
       setTransactionPaidBy(currentPaidBy)
-      setTransactionBreakdown = activeParticipants.map(activeParticipant => {
+      console.log('activeParticipants', activeParticipants)
+      setTransactionBreakdown(activeParticipants.map(activeParticipant => {
       return { name: activeParticipant, percentage: 1/activeParticipants.length }
-      })
+      }))
     }
   }, [activeParticipants, currentTransactionName, currentTransactionType, currentCost, currentPaidBy]);
   // TODO: Handle if expense type is Reimbursement so there's only one participant with an owesWho, meaning that should be the value of currentPaidTo
@@ -237,6 +243,7 @@ export default function Transaction({
                 <Table.Cell justify='end'>
                   <Select.Root
                     size='3'
+                    onValueChange={handelReImbursement}
                   >
                     <Select.Trigger variant='ghost' />
                     <Select.Content>

@@ -222,7 +222,7 @@ export async function updateTransaction(DATA) {
 
 export async function deleteTransaction(divvyId, transactionId) {
   try {
-    const response = await api.delete(`/divvy/${divvyId}/transactions/${transactionId}`);
+    const response = await api.delete(`/divvy/${divvyId}/transaction/${transactionId}`);
     return response.data;
   } catch (error) {
     console.error("Error deleting transaction:", error.response ? error.response.data : "Network or other error");
