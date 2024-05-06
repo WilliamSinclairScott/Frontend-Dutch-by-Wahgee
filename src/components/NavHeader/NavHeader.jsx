@@ -29,12 +29,12 @@ export default function NavHeader({
     }
   }
 
-  const headerTitleSize = title.length > 28 ? '3' : '5'
+  const headerTitleSize = title.length > 28 ? '3' : '4'
 
   return (
     <nav>
-      <Flex as="header" align='center' justify='between' gap="1" p='1' mb='6' >
-        <Box width='96px'>
+      <Flex as="header" align='center' height='60px' justify='between' gap="1" p='1' mb='6' >
+        <Box width='104px'>
           {transactionId ?
             cancelButton({ action: () => { navigate(`/divvys/${divvyId}`) } })
             :
@@ -52,7 +52,7 @@ export default function NavHeader({
           }
         </Box>
         <Heading wrap='balance' align='center' size={headerTitleSize}>{title}</Heading>
-        <Box width='96px' align='end'>
+        <Box width='104px' align='end'>
           {transactionId ?
             saveButton({
               action: () => {
