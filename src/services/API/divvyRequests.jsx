@@ -54,32 +54,10 @@ export async function createDivvy(DATA) {
       //intercepter logic
       console.log("Divvy created!", response.data)
     } catch (error) {
-      console.error( error.response ? error.response.data : "Network or other error")
-      throw error
-    }
-    if (DATA.owner !== getUserId()) {
-      console.error("Invalid data provided to create divvy");
-      console.log("The problem is that the owner is not the current user");
-      return;
-    }
-    if (DATA.participants.length === 0) {
-      console.error("Invalid data provided to create divvy");
-      console.log("The problem is that there are no participants");
-      return;
-    }
-    const divvyData = {
-      "divvyName": DATA.divvyName,
-      "owner": DATA.owner,
-      "participants": DATA.participants
-    }
-    const response = await api.post('/divvy', divvyData);
-    //intercepter logic
-    console.log("Divvy created!", response.data)
-  } catch (error) {
     console.error("Error during create divvy:", error.response ? error.response.data : "Network or other error")
     throw error
-  }
-}
+  }}
+
 
 
 
