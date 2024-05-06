@@ -1,5 +1,4 @@
 import api from './apiConnect';
-import  { useNavigate } from 'react-router-dom';
 import { getUserId } from '../SessionStorage/fromSession';
 /**
  * get a specific divvy by ID
@@ -30,6 +29,7 @@ export async function getDivvyById(divvyId) {
  */
 export async function createDivvy(DATA) {
   console.log("DATA", DATA)
+<<<<<<< HEAD
     try {
       if (DATA.divvyName === '') {
         console.error("Invalid data provided to create divvy");
@@ -57,7 +57,36 @@ export async function createDivvy(DATA) {
     } catch (error) {
       console.error( error.response ? error.response.data : "Network or other error")
       throw error
+=======
+  try {
+    if (DATA.divvyName === '') {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that the divvy name is empty, the owner is not the current user, or there are no participants");
+      return;
+>>>>>>> 13b4debe8aa365f3352d8683a514a2e8ce3abd0b
     }
+    if (DATA.owner !== getUserId()) {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that the owner is not the current user");
+      return;
+    }
+    if (DATA.participants.length === 0) {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that there are no participants");
+      return;
+    }
+    const divvyData = {
+      "divvyName": DATA.divvyName,
+      "owner": DATA.owner,
+      "participants": DATA.participants
+    }
+    const response = await api.post('/divvy', divvyData);
+    //intercepter logic
+    console.log("Divvy created!", response.data)
+  } catch (error) {
+    console.error("Error during create divvy:", error.response ? error.response.data : "Network or other error")
+    throw error
+  }
 }
 
 
@@ -73,31 +102,31 @@ export async function createDivvy(DATA) {
 export async function updateDivvy(DATA) {
   console.log("DATA", DATA)
   try {
-  if (DATA.divvyName === '') {
-    console.error("Invalid data provided to create divvy");
-    console.log("The problem is that the divvy name is empty, the owner is not the current user, or there are no participants");
-    return;
-  }
-  if(DATA.owner !== getUserId()){
-    console.error("Invalid data provided to create divvy");
-    console.log("The problem is that the owner is not the current user");
-    return;
-  }
-  if(DATA.participants.length === 0){
-    console.error("Invalid data provided to create divvy");
-    console.log("The problem is that there are no participants");
-    return;
-  }
-  if(DATA.divvyId === ''){
-    console.error("Invalid data provided to create divvy");
-    console.log("The problem is that there is no divvyId");
-    return;
-  }
-  const divvyData = {
-    "divvyName" : DATA.divvyName,
-    "owner" : DATA.owner,
-    "participants" : DATA.participants
-  }
+    if (DATA.divvyName === '') {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that the divvy name is empty, the owner is not the current user, or there are no participants");
+      return;
+    }
+    if (DATA.owner !== getUserId()) {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that the owner is not the current user");
+      return;
+    }
+    if (DATA.participants.length === 0) {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that there are no participants");
+      return;
+    }
+    if (DATA.divvyId === '') {
+      console.error("Invalid data provided to create divvy");
+      console.log("The problem is that there is no divvyId");
+      return;
+    }
+    const divvyData = {
+      "divvyName": DATA.divvyName,
+      "owner": DATA.owner,
+      "participants": DATA.participants
+    }
     const response = await api.patch(`/divvy/${DATA.divvyId}`, divvyData);
     console.log("Divvy updated!", response.data)
   } catch (error) {
@@ -137,38 +166,21 @@ export async function deleteDivvy(divvyId) {
  */
 export async function createTransaction(DATA) {
   try {
-  console.log("DATA", DATA)
-  if (DATA.transactionName === '' ){
-    console.error("No data provided to create divvy")
-    return
-  }
-  if (DATA.amount === '' ){
-    console.error("No data provided to create divvy")
-    return
-  }
-  if (DATA.paidBy === '' ){
-    console.error("No data provided to create divvy")
-    return
-  }
-  if (DATA.type === '' ){
-    console.error("No data provided to create divvy")
-    return
-  }
-  if (DATA.divvyId === '' ){
-    console.error("No data provided to create divvy")
-    return
-  }
-  if (typeof DATA.breakdown === 'undefined'){
-    console.error("No data provided to create divvy")
-    return
-  }
-  const transactionData = {
-    "transactionName" : DATA.transactionName,
-    "amount" : DATA.amount,
-    "paidBy" : DATA.paidBy,
-    "type" : DATA.type,
-    "breakdown" : DATA.breakdown
-  }
+    console.log("DATA", DATA)
+    const required = ["transactionName", "amount", "paidBy", "type", "divvyId", "breakdown"]
+    for (const field of required) {
+      if (!DATA[field]) {
+        console.error(`No data provided for field: ${field}`)
+        return
+      }
+    }
+    const transactionData = {
+      "transactionName": DATA.transactionName,
+      "amount": DATA.amount,
+      "paidBy": DATA.paidBy,
+      "type": DATA.type,
+      "breakdown": DATA.breakdown
+    }
     const response = await api.post(`/divvy/${DATA.divvyId}/transaction`, transactionData);
     return response.data;
   } catch (error) {
@@ -194,38 +206,32 @@ export async function createTransaction(DATA) {
 export async function updateTransaction(DATA) {
   try {
     console.log("DATA", DATA)
-    if (DATA.transactionName === '' ){
-      console.error("transactionName will not be updated")
+    const optional = ["transactionName", "amount", "paidBy", "type"]
+    for (const field of optional) {
+      if (!DATA[field]) {
+        console.log(`${field} will not be updated`)
+      }
     }
-    if (DATA.amount === '' ){
-      console.error("amount will not be updated")
-    }
-    if (DATA.paidBy === '' ){
-      console.error("paidBy will not be updated")
-    }
-    if (DATA.type === '' ){
-      console.error("type will not be updated")
-    }
-    if (DATA.transactionId === '' ){
+    if (!DATA.transactionId || DATA.transactionId === '') {
       console.error("transactionId needs to be provided")
       return
     }
-    if (DATA.divvyId === '' ){
+    if (!DATA.divvyId || DATA.divvyId === '') {
       console.error("divvyId needs to be provided")
       return
     }
     // eslint-disable-next-line valid-typeof
-    if (typeof DATA.breakdown.length === 0){
+    if (!DATA.breakdown || DATA.breakdown.length === 0) {
       console.error("Breakdown Required even if no changes")
       return
     }
 
     const transactionData = {
-      "transactionName" : DATA.transactionName !== '' ? DATA.transactionName : null,
-      "amount" : DATA.amount !== '' ? DATA.amount : null,
-      "paidBy" : DATA.paidBy !== '' ? DATA.paidBy : null,
-      "type" : DATA.type !== '' ? DATA.type : null,
-      "breakdown" : DATA.breakdown
+      "transactionName": DATA.transactionName !== '' ? DATA.transactionName : null,
+      "amount": DATA.amount !== '' ? DATA.amount : null,
+      "paidBy": DATA.paidBy !== '' ? DATA.paidBy : null,
+      "type": DATA.type !== '' ? DATA.type : null,
+      "breakdown": DATA.breakdown
     }
 
     Object.keys(transactionData).forEach(key => {
@@ -237,10 +243,10 @@ export async function updateTransaction(DATA) {
     const response = await api.patch(`/divvy/${DATA.divvyId}/transaction/${DATA.transactionId}`, transactionData);
     return response.data;
 
-    } catch (error) {
-      console.error("Error creating transaction:", error.response ? error.response.data : "Network or other error");
-      throw error;
-    }
+  } catch (error) {
+    console.error("Error creating transaction:", error.response ? error.response.data : "Network or other error");
+    throw error;
+  }
 }
 //delete a transaction within a divvy
 
