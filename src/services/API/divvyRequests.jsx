@@ -29,7 +29,6 @@ export async function getDivvyById(divvyId) {
  */
 export async function createDivvy(DATA) {
   console.log("DATA", DATA)
-<<<<<<< HEAD
     try {
       if (DATA.divvyName === '') {
         console.error("Invalid data provided to create divvy");
@@ -57,13 +56,6 @@ export async function createDivvy(DATA) {
     } catch (error) {
       console.error( error.response ? error.response.data : "Network or other error")
       throw error
-=======
-  try {
-    if (DATA.divvyName === '') {
-      console.error("Invalid data provided to create divvy");
-      console.log("The problem is that the divvy name is empty, the owner is not the current user, or there are no participants");
-      return;
->>>>>>> 13b4debe8aa365f3352d8683a514a2e8ce3abd0b
     }
     if (DATA.owner !== getUserId()) {
       console.error("Invalid data provided to create divvy");
