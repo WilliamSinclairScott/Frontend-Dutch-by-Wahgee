@@ -1,35 +1,33 @@
 # Dutch
 
-Dutch is an app designed to simplify the management of shared expenses across diverse scenarios. Whether organizing social events, managing household expenses, or coordinating any group activities that involve shared costs, Dutch helps ensure that financial contributions are recorded, tracked, and balanced fairly and efficiently.
+Dutch is an app designed to simplify the management of shared expenses across diverse scenarios. Each of these we call a "Divvy". Whether organizing social events, managing household expenses, or coordinating group activities that involve shared costs, Dutch helps ensure that financial contributions are recorded, tracked, and balanced fairly and efficiently. 
 
 ## Getting Started
-To get started with Dutch:
+Follow the link to create an account and make your first Dutch Divvy today!
 
-- **Deployed Application:** [Dutch Live](#) <!-- Add live app link -->
-- **Backend Repository:** [GitHub Backend Repo](#) <!-- Add GitHub backend repo link -->
-
-## Built with React and Vite
-This project uses Vite, which provides a faster and leaner development experience for modern web projects when compared to traditional setups like Create React App. Vite utilizes native ES modules and comes configured with Hot Module Replacement (HMR) for React.
-
-### React Fast Refresh
-Integrated via the following Vite plugins:
-- **[@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)** – Utilizes Babel for transforming React code.
-- **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)** – Leverages SWC as a super-fast alternative to Babel.
+![Static Badge](https://img.shields.io/badge/Get%20Dutch%20now%20-%20white?style=for-the-badge&logo=vercel&logoSize=auto&color=cyan&link=https%3A%2F%2Fdutch.webdevstuff.ninja)
 
 ## Contributors
-- [Contributor 1 GitHub](#) https://github.com/WilliamSinclairScott
-- [Contributor 2 GitHub](#) https://github.com/aspenos
-- [Contributor 3 GitHub](#) https://github.com/iangilmore
-- [Contributor 4 GitHub](#) 
+- [William Sinclair Scott](https://github.com/WilliamSinclairScott)
+- [Aris Spenos](https://github.com/aspenos)
+- [Joshua Pierre](https://github.com/Jpmaster23) 
+- [Ian Gilmore](https://github.com/iangilmore)
 
-## Technologies Used
-- React.js
-- Axios for API requests
-- Vite
-- CSS Framework (e.g., Bootstrap, Tailwind CSS)
-- MongoDB Atlas, Compass
-- Postman
-
+## Technologies & Attributions
+- **Frontend**
+  - React.js
+  - Vite
+  - Radix UI
+  - Axios
+  - Vercel
+- [**Backend**](https://github.com/WilliamSinclairScott/Backend-Dutch-by-Wahgee)
+  - Express
+  - Mongoose
+  - MongoDB Atlas, Compass
+  - Heroku
+- **Project Wide**
+  - VS Code
+  - Postman
 
 ## Attributions
 - [React Documentation](https://reactjs.org/)
@@ -37,15 +35,17 @@ Integrated via the following Vite plugins:
 - Any other libraries or assets used...
 
 ## Next Steps
-Future enhancements include:
-- Real-time updates via WebSockets.
-- Enhanced user profiles.
-- Machine learning for predicting spending trends.
+### Future enhancements include:
+- Multi User
+- Viewer, Editor permissions
+- Second level itemized transaction details
+- 
 
-# React + Vite
+<!---------------------------------------------------------------------------->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Button Shield]: https://img.shields.io/badge/Shield_Buttons-37a779?style=for-the-badge
 
-Currently, two official plugins are available:
-- **[@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md)** uses [Babel](https://babeljs.io/) for Fast Refresh.
-- **[@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc)** uses [SWC](https://swc.rs/) for Fast Refresh.
+[License]: LICENSE
+[Shield]: Types/Shield.md
+[KBD]: Types/KBD.md
+[#]: #
