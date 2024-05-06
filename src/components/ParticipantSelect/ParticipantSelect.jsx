@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import { Flex, Text, Table } from '@radix-ui/themes'
 import ParticipantAdd from '../ParticipantAdd/ParticipantAdd'
 import ParticipantSelectRow from '../ParticipantSelectRow/ParticipantSelectRow'
 //TODO: If participant exists in breakdown calculate amount*percentage
 //TODO: useState to recalculate percentage on checkbox change
 
-export default function ParticipantSelect({ 
+export default function ParticipantSelect({
   divvyparticipants, setDivvyParticipants,
   activeParticipants, setActiveParticipants,
   handleActiveParticipantsChange, portion
@@ -12,13 +13,18 @@ export default function ParticipantSelect({
   const participantNames = divvyparticipants.map(participant => participant.participantName ? participant.participantName : participant)
   console.log('divvyparticipants', divvyparticipants)
   console.log('participantNames', participantNames)
+  const [newParticipant, setNewParticipant] = useState('')
+  const handleInputChange = (e) => {
+    setNewParticipant(e.target.value)
+  }
   const addParticipant = (e) => {
     //from the button to the input of the textfield
     const input = e.target.previousSibling.children[0].value
     const updated = [...divvyparticipants, input]
-    e.target.previousSibling.children[0].value = ''
+    setNewParticipant('')
     setDivvyParticipants(updated)
   }
+
 
   return (
     <>
@@ -36,7 +42,11 @@ export default function ParticipantSelect({
             ))}
           </Table.Body>
         </Table.Root>
-        <ParticipantAdd addParticipant={addParticipant}/>
+        <ParticipantAdd
+          addParticipant={addParticipant}
+          newParticipant={newParticipant}
+          handleInputChange={handleInputChange}
+        />
       </Flex>
     </>
   )
