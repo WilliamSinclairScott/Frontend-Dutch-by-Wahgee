@@ -10,7 +10,6 @@ export default function DivvyBalances() {
   let balances = []
   try {
     balances = calculateBalance(divvyDetails)
-
     return (
       <>
         <Flex direction='column' justify='start'>

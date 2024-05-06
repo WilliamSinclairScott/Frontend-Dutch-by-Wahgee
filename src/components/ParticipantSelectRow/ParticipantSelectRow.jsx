@@ -6,7 +6,10 @@ import { Table, Checkbox } from '@radix-ui/themes'
 export default function ParticipantSelectRow(
   { participant, activeParticipants, portion, handleActiveParticipantsChange }
 ) {
+  //console.log(`participant`, participant)
+  //console.log(`activeParticipants`, activeParticipants)
   const dataState = activeParticipants?.includes(participant.participantName ? participant.participantName : participant)
+  //console.log('dataState', dataState)
   const [checkedStatus, setCheckedStatus] = useState(dataState ? dataState : false)
   const handleCheckedStatusChange = () => {
     setCheckedStatus(!checkedStatus)
