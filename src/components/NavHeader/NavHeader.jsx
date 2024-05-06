@@ -15,25 +15,25 @@ export default function NavHeader({
   const transactionId = useParams().transactionId
   const onDivvyPage = divvyId ? true : false
   const navigate = useNavigate()
-  // const shareData = {
-  //   title: 'Dutch',
-  //   text: 'Check out details about  on this link!',
-  //   url: { currentPath }
-  // }
+  const shareData = {
+    text: `Let's track sharing our ${title} expenses on Dutch`,
+    url: window.location.href
+  }
 
   const handleShare = async () => {
     try {
-      // await navigator.share(shareData);
-      await navigator.share();
+      await navigator.share(shareData);
       console.log('Content shared successfully!');
     } catch (error) {
       console.error('Error sharing:', error);
     }
   }
 
+  const headerTitleSize = title.length > 28 ? '3' : '5'
+
   return (
     <nav>
-      <Flex as="header" align='center' justify='between' gap="3" p='1' mb='6' >
+      <Flex as="header" align='center' justify='between' gap="1" p='1' mb='6' >
         <Box width='96px'>
           {transactionId ?
             cancelButton({ action: () => { navigate(`/divvys/${divvyId}`) } })
@@ -51,7 +51,7 @@ export default function NavHeader({
                 </NavLink>
           }
         </Box>
-        <Heading truncate size='4'>{title}</Heading>
+        <Heading wrap='balance' align='center' size={headerTitleSize}>{title}</Heading>
         <Box width='96px' align='end'>
           {transactionId ?
             saveButton({
