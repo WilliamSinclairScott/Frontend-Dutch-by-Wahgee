@@ -1,4 +1,5 @@
 # Dutch
+## _Easily divvy up expenses_
 
 Dutch is an app designed to simplify the management of shared expenses across diverse scenarios. Each of these we call a "Divvy". Whether organizing social events, managing household expenses, or coordinating group activities that involve shared costs, Dutch helps ensure that financial contributions are recorded, tracked, and balanced fairly and efficiently. 
 
@@ -19,36 +20,20 @@ Follow the link to create an account and make your first Dutch Divvy today!
 ## Technologies & Attributions
 - **Frontend**
   - [React.js](https://react.dev/)
-  - Vite
-  - Radix UI
+  - [Vite](https://vitejs.dev/)
+  - [Radix UI](https://www.radix-ui.com/)
   - [Axios](https://github.com/axios/axios)
-  - Vercel
+  - [Vercel](https://vercel.com/)
 - [**Backend**](https://github.com/WilliamSinclairScott/Backend-Dutch-by-Wahgee)
-  - Express
-  - Mongoose
-  - MongoDB Atlas, Compass
-  - Heroku
+  - [Express](https://expressjs.com/)
+  - [Mongoose](https://mongoosejs.com/)
+  - [MongoDB Atlas, Compass](https://www.mongodb.com/)
+  - [Heroku](https://heroku.com/)
 - **Project Wide**
-  - VS Code
-  - Postman
-
-## Attributions
-- [React Documentation](https://reactjs.org/)
-- [Axios on GitHub]
-- Any other libraries or assets used...
+  - [VS Code](https://code.visualstudio.com/)
+  - [Postman](https://www.postman.com/)
 
 ## Next Steps
-### Future enhancements include:
 - Multi User
 - Viewer, Editor permissions
 - Second level itemized transaction details
-- 
-
-<!---------------------------------------------------------------------------->
-
-[Button Shield]: https://img.shields.io/badge/Shield_Buttons-37a779?style=for-the-badge
-
-[License]: LICENSE
-[Shield]: Types/Shield.md
-[KBD]: Types/KBD.md
-[#]: #
