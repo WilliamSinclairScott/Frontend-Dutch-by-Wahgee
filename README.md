@@ -2,6 +2,9 @@
 
 Dutch is an app designed to simplify the management of shared expenses across diverse scenarios. Each of these we call a "Divvy". Whether organizing social events, managing household expenses, or coordinating group activities that involve shared costs, Dutch helps ensure that financial contributions are recorded, tracked, and balanced fairly and efficiently. 
 
+![image](https://github.com/WilliamSinclairScott/Frontend-Dutch-by-Wahgee/assets/6451468/484cc3ca-11b5-4362-8959-7cc97ce47d33)
+
+
 ## Getting Started
 Follow the link to create an account and make your first Dutch Divvy today!
 
@@ -15,10 +18,10 @@ Follow the link to create an account and make your first Dutch Divvy today!
 
 ## Technologies & Attributions
 - **Frontend**
-  - React.js
+  - [React.js](https://react.dev/)
   - Vite
   - Radix UI
-  - Axios
+  - [Axios](https://github.com/axios/axios)
   - Vercel
 - [**Backend**](https://github.com/WilliamSinclairScott/Backend-Dutch-by-Wahgee)
   - Express
@@ -31,7 +34,7 @@ Follow the link to create an account and make your first Dutch Divvy today!
 
 ## Attributions
 - [React Documentation](https://reactjs.org/)
-- [Axios on GitHub](https://github.com/axios/axios)
+- [Axios on GitHub]
 - Any other libraries or assets used...
 
 ## Next Steps
