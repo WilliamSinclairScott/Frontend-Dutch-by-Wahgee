@@ -215,7 +215,7 @@ export async function updateTransaction(DATA) {
       return
     }
     // eslint-disable-next-line valid-typeof
-    if (typeof DATA.breakdown.length === 0){
+    if (DATA.breakdown.length === 0){
       console.error("Breakdown Required even if no changes")
       return
     }

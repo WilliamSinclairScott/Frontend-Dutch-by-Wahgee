@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table, Flex, Select, Text, TextField } from '@radix-ui/themes';
 import ParticipantSelect from '../../components/ParticipantSelect/ParticipantSelect';
@@ -8,6 +8,7 @@ import NavHeader from '../../components/NavHeader/NavHeader';
 import DutchAlertDialog from '../../components/DutchAlertDialog/DutchAlertDialog';
 import { updateTransaction } from '../../services/API/divvyRequests';
 import { deleteTransaction } from '../../services/API/divvyRequests';
+import { CornerTopLeftIcon } from '@radix-ui/react-icons';
 
 export default function Transaction({
   newTransaction,
@@ -58,55 +59,78 @@ export default function Transaction({
   const [currentTransactionType, setCurrentTransactionType] = useState(transaction.type)
   const [currentCost, setCurrentCost] = useState(transaction.amount);
   const [currentPaidBy, setCurrentPaidBy] = useState(transaction.paidBy)
-
-  const startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
+  
+  let startingActiveParticipants = transaction.breakdown.map(participant => participant.name)
+  if (newTransaction) startingActiveParticipants = participants
+  //console.log('startingActiveParticipants', startingActiveParticipants)
   const [activeParticipants, setActiveParticipants] = useState(startingActiveParticipants)
-  const [percentage, setPercentage] = useState(1 / activeParticipants.length)
-  const [breakdown, setBreakdown] = useState([])
   const handleActiveParticipantsChange = (e) => {
+    e.preventDefault()
     const participantName = e.target.parentElement.nextSibling.textContent.trim();
-    console.log(participantName);
+    console.log('Hey, Add or remove: ',participantName);
     if (activeParticipants.includes(participantName)) {
-      activeParticipants.splice(activeParticipants.indexOf(participantName), 1)
+      const newActives = activeParticipants.filter(participant => participant !== participantName);
+      setActiveParticipants(newActives)
     } else {
-      activeParticipants.push(participantName)
+      const newActives = [...activeParticipants, participantName]
+      setActiveParticipants(newActives)
     }
-    console.log(activeParticipants);
-    setPercentage(1 / activeParticipants.length)
-    const newBreakdown = activeParticipants.map(activeParticipant => {
-      return { name: activeParticipant, percentage: percentage }
-    })
-
-    setBreakdown(newBreakdown)
-    if (newTransaction) setTransactionBreakdown(newBreakdown)
   }
 
   const handleTransactionNameChange = (e) => {
+    e.preventDefault()
     setCurrentTransactionName(e.target.value)
-    if (newTransaction) setTransactionName(currentTransactionName)
+    if (newTransaction){
+      setTransactionName(currentTransactionName)
+    }
   }
 
   const handleTransactionTypeChange = (e) => {
+    e.preventDefault()
     setCurrentTransactionType(e)
-    if (newTransaction) setTransactionType(currentTransactionType)
+    if (newTransaction) {
+      setTransactionType(currentTransactionType)
+    }
   }
 
   const handleCostChange = (e) => {
-    console.log('e.target.value', e.target.value)
+    e.preventDefault()
     setCurrentCost(e.target.value)
-    if (newTransaction) setTransactionAmount(currentCost)
-    console.log('currentCost', currentCost, " transactionAmount", transactionAmount)
+    if (newTransaction) {
+      setTransactionAmount(currentCost)
+    }
   }
 
   const handlePaidByChange = (e) => {
+    e.preventDefault()
     setCurrentPaidBy(e.target.value)
     if (newTransaction) setTransactionPaidBy(currentPaidBy)
+    console.log('on event', currentPaidBy)
   }
 
-  // if (newTransaction)
-  //   setTransactionBreakdown(breakdown)
-  // }
-
+  useEffect( () => {
+    // Code to grab the information on the page when something changes
+    setActiveParticipants(activeParticipants)
+    //console.log('activeParticipants', activeParticipants)
+    
+    // console.log('currentTransactionName', currentTransactionName)
+    // console.log('currentTransactionType', currentTransactionType)
+    //console.log('before set in use effect', currentCost)
+    // console.log('currentPaidBy', currentPaidBy)
+    setCurrentTransactionName(currentTransactionName)
+    setCurrentTransactionType(currentTransactionType)
+    setCurrentCost(currentCost)
+    setCurrentPaidBy(currentPaidBy)
+    if(newTransaction) {
+      setTransactionName(currentTransactionName)
+      setTransactionType(currentTransactionType)
+      setTransactionAmount(currentCost)
+      setTransactionPaidBy(currentPaidBy)
+      setTransactionBreakdown = activeParticipants.map(activeParticipant => {
+      return { name: activeParticipant, percentage: 1/activeParticipants.length }
+      })
+    }
+  }, [activeParticipants, currentTransactionName, currentTransactionType, currentCost, currentPaidBy]);
   // TODO: Handle if expense type is Reimbursement so there's only one participant with an owesWho, meaning that should be the value of currentPaidTo
 
   return (
@@ -124,7 +148,10 @@ export default function Transaction({
               type: currentTransactionType,
               amount: currentCost,
               paidBy: currentPaidBy,
-              breakdown: breakdown
+              //TODO: Add breakdown
+              breakdown: activeParticipants.map(activeParticipant => {
+                return { name: activeParticipant, percentage: 1/activeParticipants.length }
+              })
             }
           }
         />}
@@ -233,7 +260,7 @@ export default function Transaction({
             divvyparticipants={divvyparticipants}
             currentCost={currentCost}
             handleActiveParticipantsChange={handleActiveParticipantsChange}
-            portion={currentCost * percentage}
+            portion={currentCost * 1/activeParticipants.length}
             activeParticipants={activeParticipants}
           />
           //TODO: Add submit button for expense
