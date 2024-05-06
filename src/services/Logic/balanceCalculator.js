@@ -10,7 +10,8 @@ export const calculateBalance = (divvy) => {
     const name = participant.participantName;
     let owesTotal = participant.owesWho.map(owe => {
       return owe.amount;
-    }).reduce((acc, amount) => acc + amount, 0);
+    })
+    .reduce((acc, amount) => acc + amount, 0);
     const paid = transactions.filter(transaction => {
       return transaction.paidBy === name ? transaction.amount : null} )
     const paidTotal = paid.reduce((acc, transaction) => acc + transaction.amount, 0);
@@ -19,7 +20,7 @@ export const calculateBalance = (divvy) => {
     const owes = [];
     return { name, owes, balance };
   });
-  
+  console.log('after simplification',balance);
   // Assign the owes array to each participant object using a greedy algorithm
   // sort balance from most negative to most positive
   balance.sort((a, b) => a.balance - b.balance);

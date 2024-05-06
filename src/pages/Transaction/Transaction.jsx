@@ -102,10 +102,8 @@ export default function Transaction({
   }
 
   const handlePaidByChange = (e) => {
-    e.preventDefault()
-    setCurrentPaidBy(e.target.value)
+    setCurrentPaidBy(e)
     if (newTransaction) setTransactionPaidBy(currentPaidBy)
-    console.log('on event', currentPaidBy)
   }
 
   useEffect( () => {
@@ -121,6 +119,7 @@ export default function Transaction({
     setCurrentTransactionType(currentTransactionType)
     setCurrentCost(currentCost)
     setCurrentPaidBy(currentPaidBy)
+    console.log('useEffect paidBy', currentPaidBy)
     if(newTransaction) {
       setTransactionName(currentTransactionName)
       setTransactionType(currentTransactionType)
@@ -216,12 +215,14 @@ export default function Transaction({
                 <Select.Root
                   defaultValue={currentPaidBy}
                   size='3'
-                  onChange={handlePaidByChange}
+                  onValueChange={handlePaidByChange}
                 >
                   <Select.Trigger variant='ghost' />
                   <Select.Content>
                     {divvyparticipants.map(participant => {
-                      return <Select.Item key={participant._id} value={participant.participantName}>
+                      return <Select.Item key={participant._id} 
+                      value={participant.participantName ? participant.participantName: participant}
+                      >
                         {participant.participantName}
                       </Select.Item>
                     })}
