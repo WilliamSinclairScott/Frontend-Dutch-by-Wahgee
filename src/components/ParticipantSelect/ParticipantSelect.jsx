@@ -11,8 +11,9 @@ export default function ParticipantSelect({
   handleActiveParticipantsChange, portion
 }) {
   const participantNames = divvyparticipants.map(participant => participant.participantName ? participant.participantName : participant)
-  console.log('divvyparticipants', divvyparticipants)
-  console.log('participantNames', participantNames)
+  //console.log('activeParticipants', activeParticipants)
+  // console.log('divvyparticipants', divvyparticipants)
+  // console.log('participantNames', participantNames)
   const [newParticipant, setNewParticipant] = useState('')
   const handleInputChange = (e) => {
     setNewParticipant(e.target.value)
