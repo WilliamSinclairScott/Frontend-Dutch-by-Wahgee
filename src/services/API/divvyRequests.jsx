@@ -51,11 +51,11 @@ export async function createDivvy(DATA) {
         "owner" : DATA.owner,
         "participants" : DATA.participants
       }
-      const response = await api.post('/divvy', divvyData);
+      const response = await api.post('/divvy/', divvyData);
       //intercepter logic
       console.log("Divvy created!", response.data)
     } catch (error) {
-      console.error("Error during create divvy:", error.response ? error.response.data : "Network or other error")
+      console.error( error.response ? error.response.data : "Network or other error")
       throw error
     }
 }
