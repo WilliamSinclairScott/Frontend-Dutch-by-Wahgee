@@ -9,7 +9,7 @@ Dutch is an app designed to simplify the management of shared expenses across di
 ## Getting Started
 Follow the link to create an account and make your first Dutch Divvy today!
 
-![Static Badge](https://img.shields.io/badge/Get%20Dutch%20now%20-%20white?style=for-the-badge&logo=vercel&logoSize=auto&color=cyan&link=https%3A%2F%2Fdutch.webdevstuff.ninja)
+[![Dutch Button]][Dutch Link]
 
 ## Contributors
 - [William Sinclair Scott](https://github.com/WilliamSinclairScott)
@@ -37,3 +37,8 @@ Follow the link to create an account and make your first Dutch Divvy today!
 - Multi User
 - Viewer, Editor permissions
 - Second level itemized transaction details
+
+<!----------------------------------------------------------------------------->
+[Dutch Link]: https://dutch.webdevstuff.ninja 'Go to https://dutch.webdevstuff.ninja'
+<!---------------------------------[ Buttons ]--------------------------------->
+[Dutch Button]: https://img.shields.io/badge/Get%20Dutch%20now%20-%20white?style=for-the-badge&logo=vercel&logoSize=auto&color=blue&link=https%3A%2F%2Fdutch.webdevstuff.ninja
