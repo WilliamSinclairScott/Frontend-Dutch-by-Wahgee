@@ -1,5 +1,9 @@
-# Dutch
-## _Easily divvy up expenses_
+<div align = center>
+
+  # Dutch
+  ### _Easily divvy up expenses_
+
+</div>
 
 Dutch is an app designed to simplify the management of shared expenses across diverse scenarios. Each of these we call a "Divvy". Whether organizing social events, managing household expenses, or coordinating group activities that involve shared costs, Dutch helps ensure that financial contributions are recorded, tracked, and balanced fairly and efficiently. 
 
